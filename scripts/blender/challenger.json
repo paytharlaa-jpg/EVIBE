@@ -1,0 +1,1 @@
+{"out": "C:/WEBSITES/EVIBE/website/public/models/challenger.glb", "remove": "^(Plane\\.002|Empty|Sun)", "wheel": "^Circle\\.00[1-4]$", "rotZ": 90, "length": 5.0, "subsurf_cap": 2, "body_tris": 400000, "part_tris": 30000, "keep_dense": "^Plane$"}

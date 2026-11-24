@@ -1,0 +1,28 @@
+// QA: home → about → home via the nav; the film must come back and render.
+import { chromium } from 'playwright-core';
+const out = process.argv[2];
+const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const page = await (await browser.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+const errs = [];
+page.on('pageerror', (e) => errs.push(String(e)));
+await page.goto(process.env.URL || 'http://localhost:4173/', { waitUntil: 'networkidle' });
+await page.waitForSelector('.ld2', { state: 'detached', timeout: 40000 });
+await page.waitForTimeout(2500);
+await page.screenshot({ path: `${out}/r0-home.png` });
+await page.click('.nav-inline >> text=About');
+await page.waitForURL('**/about', { timeout: 30000 });
+await page.waitForTimeout(6000);
+await page.screenshot({ path: `${out}/r1-about.png` });
+await page.click('.nav-logo');
+await page.waitForURL((u) => u.pathname === '/', { timeout: 30000 });
+await page.waitForSelector('.story', { timeout: 20000 });
+await page.waitForTimeout(3000);
+console.log('home url:', page.url());
+await page.evaluate(() => { const s = document.querySelector('.story'); window.scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * 0.72); });
+await page.waitForTimeout(2500);
+await page.screenshot({ path: `${out}/r2-home-again.png` });
+await page.goBack();
+await page.waitForTimeout(4000);
+console.log('about h1 after back:', await page.evaluate(() => document.querySelector('h1')?.getAttribute('aria-label')));
+console.log('after back:', page.url(), 'errors:', errs.length ? errs : 'none');
+await browser.close();

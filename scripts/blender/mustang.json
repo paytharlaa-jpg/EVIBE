@@ -1,0 +1,1 @@
+{"out": "C:/WEBSITES/EVIBE/website/public/models/mustang.glb", "remove": "^(alights|Light|Background Drape|Exhaust|Rear Number Plate|Plane$|Camera|Point)", "wheel": "^(Wheels|Spokes|Rubber/Brakes|Hub|Bolt)", "rotZ": 180, "length": 4.8}

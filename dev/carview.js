@@ -1,0 +1,31 @@
+// Dev-only: render one car with the site's materials. ?car=mustang&paint=%230561DF&view=0
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+import { CARS, dressCar } from '../src/story/carMaterials.js';
+const q = new URLSearchParams(location.search);
+const car = CARS[q.get('car') || 'mustang'];
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#0a1222');
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+const cam = new THREE.PerspectiveCamera(32, innerWidth / innerHeight, 0.1, 100);
+const views = [[5.5, 2, 6.5], [-5.5, 2, -6.5], [7.5, 1.2, 0], [0, 6, 0.01]];
+const v = views[+(q.get('view') || 0)];
+cam.position.set(...v); cam.lookAt(0, 0.6, 0);
+scene.add(new THREE.HemisphereLight('#bcd', '#223', 1.2));
+const grid = new THREE.GridHelper(10, 10, '#335', '#223'); scene.add(grid);
+const dl = new DRACOLoader(); dl.setDecoderPath('/draco/');
+const gl = new GLTFLoader(); gl.setDRACOLoader(dl);
+gl.load(car.url, (g) => {
+  const { model, wheels } = dressCar(g.scene, car, q.get('paint') || '#0561DF');
+  scene.add(model);
+  const box = new THREE.Box3().setFromObject(model); const s = box.getSize(new THREE.Vector3());
+  const mats = new Set(); model.traverse((o) => o.isMesh && [].concat(o.material).forEach((m) => mats.add(m.type)));
+  document.getElementById('l').textContent = `size ${s.x.toFixed(2)} x ${s.y.toFixed(2)} x ${s.z.toFixed(2)} | wheels ${wheels.map((w) => w.name + '@' + w.position.toArray().map((n) => n.toFixed(2))).join(' ')}`;
+  renderer.render(scene, cam);
+  window.__ready = true;
+});
