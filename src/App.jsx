@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { ScrollTrigger, startSmoothScroll, stopScroll, resumeScroll, gsap } from './lib/scroll';
 import { detectTier } from './lib/device';
 import { TransitionProvider } from './lib/transition';
@@ -13,7 +13,9 @@ import Footer from './sections/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import ServicesPage from './pages/Services';
-import { GalleryPage, TestimonialsPage, FAQPage, ContactPage } from './pages/Simple';
+import { GalleryPage, FAQPage, ContactPage } from './pages/Simple';
+import FranchisePage from './pages/Franchise';
+import PartnerPage from './pages/Partner';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -75,7 +77,9 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/franchise" element={<FranchisePage />} />
+          <Route path="/partner" element={<PartnerPage />} />
+          <Route path="/testimonials" element={<Navigate to="/partner" replace />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Home tier={tier} onSceneReady={onSceneReady} />} />

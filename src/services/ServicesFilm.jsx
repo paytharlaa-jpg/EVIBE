@@ -12,9 +12,9 @@ const ServicesScene = lazy(() => import('./ServicesScene'));
 // flies the camera from a home garage (overnight AC) to a workplace car park
 // (AC while you work) to a highway hub (DC fast charging).
 const COPY = {
-  home: { svc: services.find((s) => s.id === 'home'), kicker: '01 · 11:40 PM · Home', title: ['Plug in at night.', 'Wake up full.'], level: homeCharge },
-  work: { svc: services.find((s) => s.id === 'business'), kicker: '02 · 9:10 AM · Workplace', title: ['Park.', 'Charge while you work.'], level: workCharge },
-  hub: { svc: services.find((s) => s.id === 'fast'), kicker: '03 · 6:25 PM · Highway hub', title: ['Twenty minutes,', 'not two hours.'], level: hubCharge },
+  home: { svc: services.find((s) => s.id === 'communities'), kicker: '01 · Gated communities & apartments', title: ['Come home.', 'Wake up charged.'], level: homeCharge },
+  work: { svc: services.find((s) => s.id === 'commercial'), kicker: '02 · Commercial & corporate', title: ['Park.', 'Charge while you work.'], level: workCharge },
+  hub: { svc: services.find((s) => s.id === 'highway'), kicker: '03 · Highway charging', title: ['Fast charging', 'where the road goes.'], level: hubCharge },
 };
 
 export default function ServicesFilm({ tier }) {
@@ -78,7 +78,7 @@ export default function ServicesFilm({ tier }) {
   };
 
   return (
-    <section className={`svf ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-label="Three drivers, one network: home, workplace and highway charging">
+    <section className={`svf ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-label="One ecosystem, every location: communities, commercial and highway charging">
       <div className="svf-stage" ref={stage}>
         <div className="svf-gl" aria-hidden="true">
           {tier > 0 ? (
@@ -91,7 +91,7 @@ export default function ServicesFilm({ tier }) {
         </div>
         <div className="svf-shade" aria-hidden="true" />
         <p className="svf-head" aria-hidden="true">
-          Three drivers. <b>One network.</b>
+          One ecosystem. <b>Every location.</b>
         </p>
 
         {CHAPTERS.map((ch) => {
@@ -118,8 +118,8 @@ export default function ServicesFilm({ tier }) {
                   <span data-bar />
                 </div>
               </div>
-              <a className="u-link svf-cta" href={waLink(`Hi EVIBE, I am interested in ${c.svc.title.toLowerCase()}.`)} target="_blank" rel="noopener">
-                Ask about {c.svc.title.toLowerCase()} →
+              <a className="u-link svf-cta" href={waLink(`Hi EVIBE, I am interested in ${c.svc.title}.`)} target="_blank" rel="noopener">
+                {c.svc.cta} →
               </a>
             </article>
           );

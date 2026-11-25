@@ -1,9 +1,7 @@
 // ─────────────────────────────────────────────────────────────
 // EVIBE website copy. Every word on the site lives in this file,
 // so text can be changed without touching the design.
-//
-// DRAFT NOTICE: testimonials and the numbers marked "VERIFY" were
-// written as drafts. Replace them with real ones before launch.
+// Source: content/EVIBE_Website_content.html (approved client copy).
 // ─────────────────────────────────────────────────────────────
 
 export const company = {
@@ -15,213 +13,312 @@ export const company = {
   whatsapp: '919985098373',
   email: 'info@evibemobility.com',
   domain: 'evibemobility.com',
+  blurb: 'Integrated EV charging solutions, digital management, deployment coordination and support.',
 };
 
-export const waLink = (text = 'Hi EVIBE, I would like to know more about EV charging.') =>
+export const waLink = (text = 'Hi EVIBE, I would like to know more about your EV charging ecosystem.') =>
   `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`;
 
 // Pages: path, menu label, browser title and search description.
 export const pages = [
-  { path: '/', label: 'Home', title: 'EVIBE Mobility Solutions | EV Charging Stations, Installation & Maintenance', desc: 'EVIBE designs, installs and maintains EV charging points for homes, businesses, fleets and public hubs. Free site survey. Call or WhatsApp +91 99850 98373.' },
-  { path: '/about', label: 'About', title: 'About EVIBE | EV Charging Company', desc: 'EVIBE Mobility Solutions takes a site from an empty bay to a working, monitored EV charging point, and stays on to keep it running.' },
-  { path: '/services', label: 'Services', title: 'EV Charging Services | Home, Commercial, DC Fast, Fleet & AMC | EVIBE', desc: 'Home chargers, workplace and commercial charging, DC fast-charging hubs, fleet depots and annual maintenance from EVIBE.' },
-  { path: '/gallery', label: 'Gallery', title: 'Gallery | EVIBE EV Charging', desc: 'Charging points, hubs and installations by EVIBE Mobility Solutions.' },
-  { path: '/testimonials', label: 'Testimonials', title: 'Testimonials | EVIBE EV Charging', desc: 'What homeowners, societies, fleets and businesses say about charging with EVIBE.' },
-  { path: '/faq', label: 'FAQ', title: 'EV Charging FAQ | EVIBE', desc: 'Answers on EV charger installation time, choosing a charger, electricity load, apartments, fast-charging hubs and maintenance.' },
-  { path: '/contact', label: 'Contact', title: 'Contact EVIBE | Book a Free EV Charging Site Survey', desc: 'WhatsApp, call or email EVIBE Mobility Solutions for EV charging installation. +91 99850 98373 · info@evibemobility.com' },
+  { path: '/', label: 'Home', title: 'EVIBE | Elevating the Electric Experience · EV Charging Ecosystem', desc: 'Not just chargers. An entire EV charging ecosystem: EVIBE charging solutions, digital charging management, deployment coordination and ongoing support under one brand.' },
+  { path: '/about', label: 'About', title: 'About EVIBE | Building a Connected Electric Mobility Experience', desc: 'EVIBE is an electric mobility solutions company building an integrated ecosystem for EV charging and customer experiences.' },
+  { path: '/services', label: 'Solutions', title: 'EV Charging Solutions | Communities, Hotels, Commercial, Highway, Fleet | EVIBE', desc: 'Charging solutions designed around your location: gated communities, hotels, commercial premises, highway hubs, fleet & logistics and EVIBE experience destinations.' },
+  { path: '/franchise', label: 'Franchise', title: 'EVIBE Franchise Opportunities | Starter, Signature, Flagship', desc: 'Choose your EVIBE. Three franchise formats configured around investment capacity, land availability and local market requirements.' },
+  { path: '/partner', label: 'Partner With Us', title: 'Partner With EVIBE | Landowners & Business Partnerships', desc: 'Have a location with potential? Partner with EVIBE to explore EV charging solutions and EVIBE experience destinations on your property.' },
+  { path: '/gallery', label: 'Gallery', title: 'Gallery | EVIBE EV Charging', desc: 'Charging solutions, hubs and electric experiences by EVIBE.' },
+  { path: '/faq', label: 'FAQ', title: 'FAQ | EVIBE EV Charging Ecosystem', desc: 'Answers about EVIBE charging solutions, deployment, technology, franchise formats and landowner partnerships.' },
+  { path: '/contact', label: 'Contact', title: 'Enquire | Connect with EVIBE', desc: 'For charging solutions, franchise opportunities, landowner partnerships or business collaborations, share a few details and our team will take the discussion forward.' },
 ];
 export const nav = pages;
 
-export const hero = {
-  eyebrow: 'EV charging infrastructure',
-  lines: ['Charge', 'the way', 'forward.'],
-  sub: 'EVIBE plans, installs and looks after EV charging points for homes, workplaces, fleets and public hubs, from a single wall box to a full fast-charging site.',
-  primary: 'Book a free site survey',
-  secondary: 'Explore services',
+// ── Home ──────────────────────────────────────────────────────
+export const intro = {
+  kicker: 'The electric experience destination',
+  title: ['Not Just Chargers.', 'An Entire EV Charging Ecosystem.'],
+  body: 'EVIBE brings together EV charging solutions, digital charging management, infrastructure deployment coordination and ongoing operational support, under one integrated brand.',
+  tagline: 'Charge. Dine. Discover. Experience.',
 };
 
-export const marquee = [
-  'AC home chargers',
-  'DC fast charging',
-  'Site survey',
-  'Electrical design',
-  'DISCOM approvals',
-  'Installation',
-  'Fleet depots',
-  'Annual maintenance',
-  'Remote monitoring',
+// The circular ecosystem (rotating rings on Home / About)
+export const ecosystem = {
+  kicker: 'One connected lifecycle',
+  title: 'One Ecosystem. Every Step of the EV Journey.',
+  body: 'From discovering the right location to charging, customer engagement and ongoing support, each stage connects to the next.',
+  centre: { title: ['EV Charging', 'Ecosystem'], body: 'A complete, end-to-end ecosystem from location to charging and ongoing support.' },
+  steps: [
+    { no: '01', icon: 'pin', title: 'Discover', brand: 'EVIBE IQ', body: 'Property & location identification' },
+    { no: '02', icon: 'plan', title: 'Plan', brand: 'EVIBE DEPLOY', body: 'Site planning & design' },
+    { no: '03', icon: 'helmet', title: 'Implement', brand: 'EVIBE DEPLOY', body: 'Infrastructure deployment coordination' },
+    { no: '04', icon: 'charger', title: 'Charge', brand: 'EVIBE CHARGE', body: 'DC charging solutions' },
+    { no: '05', icon: 'chart', title: 'Manage', brand: 'EVIBE DIGITAL', body: 'CSMS & charger monitoring' },
+    { no: '06', icon: 'gift', title: 'Engage', brand: 'EVIBE MILES', body: 'Payments, membership & rewards' },
+    { no: '07', icon: 'headset', title: 'Support', brand: 'EVIBE CARE', body: 'Operations & customer support' },
+  ],
+};
+
+// Four pillars of the ecosystem
+export const pillars = [
+  { no: '01', tag: 'Hardware', name: 'EVIBE CHARGE', body: 'EVIBE-branded DC fast-charging solutions sourced and configured with selected manufacturing partners.' },
+  { no: '02', tag: 'Software', name: 'EVIBE DIGITAL', body: 'EVIBE-powered charging management, charger monitoring and customer-facing digital experiences, subject to verified platform capabilities.' },
+  { no: '03', tag: 'Deployment', name: 'EVIBE DEPLOY', body: 'Site assessment, feasibility, planning, vendor coordination, deployment oversight and commissioning support.' },
+  { no: '04', tag: 'Operations', name: 'EVIBE CARE', body: 'Remote monitoring, technical assistance, maintenance coordination, troubleshooting and customer support.' },
 ];
 
-export const manifesto =
-  'Every electric journey begins at a plug. We build the places where it happens: charging points that are engineered to the last cable, installed without fuss and kept running long after the van leaves.';
+// Values strip (replaces the old numbers block)
+export const values = {
+  kicker: 'Why EVIBE',
+  title: 'Integrated EV Charging Ecosystem.',
+  items: [
+    { k: 'Technology-flexible', v: 'Selected charging partners' },
+    { k: 'Integrated approach', v: 'Hardware to operations' },
+    { k: 'Customer-focused', v: 'Solutions by site and use case' },
+    { k: 'Scalable vision', v: 'Multiple business segments' },
+  ],
+};
 
-export const about = {
-  kicker: 'About EVIBE',
-  title: ['Built for', 'the electric', 'decade.'],
-  body: [
-    'EVIBE Mobility Solutions is an EV charging company. We take a site from an empty wall or parking bay to a working, metered, monitored charging point, and we stay on as the people you call when something needs attention.',
-    'One team handles the whole job: load assessment, charger selection, civil and electrical work, approvals, commissioning, user onboarding and maintenance. You deal with one company, one point of contact and one warranty.',
+// ── About ─────────────────────────────────────────────────────
+export const aboutPage = {
+  hero: {
+    kicker: 'About EVIBE',
+    title: ['Building a connected', 'electric mobility', 'experience.'],
+    sub: 'EVIBE is an electric mobility solutions company building an integrated ecosystem for EV charging and customer experiences.',
+  },
+  story: [
+    {
+      title: 'Who we are',
+      body: 'Through EVIBE-branded charging solutions, digital charging management, infrastructure deployment coordination and ongoing operational support, we bring the key elements of an EV charging project together under one brand.',
+    },
+    {
+      title: 'One integrated approach',
+      body: 'EVIBE coordinates the project journey and works with specialist partners for the relevant equipment, infrastructure and execution packages. Multiple technology partners, one point of coordination.',
+    },
   ],
-  pillars: [
-    { k: '01', t: 'Engineered first', d: 'Every install starts with a load study and a written plan. No guesswork on cable sizing, earthing or protection.' },
-    { k: '02', t: 'Charger-agnostic', d: 'We recommend the right hardware for your vehicles and budget, from compact AC wall boxes to high-power DC units.' },
-    { k: '03', t: 'Here after install', d: 'Preventive maintenance, remote monitoring and quick-response service keep your chargers available.' },
+  checks: ['Selected manufacturing and technology partners', 'Solutions matched to project requirements', 'Coordinated deployment approach', 'Ongoing operational support model'],
+};
+
+// Technology & digital experience
+export const technology = {
+  kicker: 'Technology & digital experience',
+  title: 'Smarter charging. Seamless experiences.',
+  body: 'Digital capabilities that support charger operations and customer journeys. Availability depends on platform configuration and rollout.',
+  items: [
+    { name: 'EVIBE CSMS', body: 'Charging Station Management System for charger operations, sessions, status, monitoring and reporting.', status: 'Platform configuration dependent' },
+    { name: 'QR / WhatsApp-enabled charging', body: 'A proposed customer journey to scan a charger QR code, access a supported digital experience, make payment and authorise a charging session.', status: 'Subject to validation' },
+    { name: 'EVIBE IQ', body: 'Intelligent property and location insights to help identify and evaluate promising locations for EV charging infrastructure.', status: 'Admin-managed capability' },
+    { name: 'EVIBE Miles', body: 'Planned membership and loyalty ecosystem for charging rewards, customer engagement and benefits across EVIBE destinations.', status: 'Planned' },
   ],
+};
+
+export const evibeIQ = {
+  kicker: 'EVIBE IQ · Location intelligence',
+  sub: 'Discover · Evaluate · Expand',
+  title: 'Find the right location for the right opportunity.',
+  body: 'EVIBE IQ supports property and location discovery, location suitability insights, charging ecosystem assessment, infrastructure readiness considerations and preliminary commercial feasibility discussions.',
+  points: [
+    'Property discovery across selected locations and corridors',
+    'Location assessment covering access, connectivity and surrounding activity',
+    'Infrastructure considerations including space and power requirements',
+    'Expansion planning for charging hubs and destination formats',
+  ],
+  note: 'Detailed property records, data sources, evaluation methodology, scoring, financial models and operational tools are managed internally by authorised EVIBE administrators.',
+};
+
+// ── Solutions (services) ──────────────────────────────────────
+export const solutionsIntro = {
+  kicker: 'Solutions for every setting',
+  title: 'Charging solutions designed around your location.',
+  body: 'Different locations have different charging needs. EVIBE works with selected technology and execution partners to coordinate solutions around each site’s requirements.',
 };
 
 export const services = [
   {
-    id: 'home',
+    id: 'communities',
     no: '01',
-    title: 'Home charging',
-    lead: 'Wake up to a full battery.',
-    body: 'Smart AC wall boxes for independent houses, villas and apartment parking. Neat cable runs, dedicated protection and app control.',
-    tags: ['3.3 – 22 kW AC', 'Apartment approvals', 'Smart scheduling'],
-    img: 'charge-05',
-  },
-  {
-    id: 'business',
-    no: '02',
-    title: 'Workplace & commercial',
-    lead: 'Turn parking into a perk.',
-    body: 'Charging for offices, hotels, malls, hospitals and restaurants. Multi-point layouts, user billing and branded charger fascias.',
-    tags: ['Multi-charger sites', 'RFID & app access', 'Revenue sharing models'],
+    title: 'Gated Communities & Apartments',
+    lead: 'Charging residents can count on.',
+    body: 'Charging infrastructure planned around resident demand, parking layouts, available electrical capacity and future growth.',
+    tags: ['Resident demand', 'Parking layouts', 'Capacity & growth'],
+    cta: 'Request a Site Assessment',
     img: 'charge-03',
   },
   {
-    id: 'fast',
+    id: 'hotels',
+    no: '02',
+    title: 'Hotels & Hospitality',
+    lead: 'A reason for guests to stay.',
+    body: 'EV charging as a guest amenity for hotels, resorts, business hotels and serviced apartments.',
+    tags: ['Hotels & resorts', 'Business hotels', 'Serviced apartments'],
+    cta: 'Partner With EVIBE',
+    img: 'charge-06',
+  },
+  {
+    id: 'commercial',
     no: '03',
-    title: 'DC fast-charging hubs',
-    lead: 'Twenty minutes, not two hours.',
-    body: 'High-power DC charging for highways, fuel stations and city hubs, including transformer planning, civil works and canopy design.',
-    tags: ['30 – 240 kW DC', 'CCS2 & Type 2', 'Transformer & HT works'],
-    img: 'charge-02',
+    title: 'Commercial & Corporate',
+    lead: 'Turn parking into a perk.',
+    body: 'Charging for offices, IT parks, malls, retail destinations and commercial premises.',
+    tags: ['Offices & IT parks', 'Malls & retail', 'Commercial premises'],
+    cta: 'Discuss Your Project',
+    img: 'charge-08',
+  },
+  {
+    id: 'highway',
+    no: '04',
+    title: 'Highway Charging',
+    lead: 'Fast charging where the road goes.',
+    body: 'DC fast-charging hubs for highways, travel corridors and roadside destinations.',
+    tags: ['DC fast-charging hubs', 'Travel corridors', 'Roadside destinations'],
+    cta: 'Explore Hub Development',
+    img: 'charge-04',
   },
   {
     id: 'fleet',
-    no: '04',
-    title: 'Fleet & depot charging',
-    lead: 'Every vehicle ready for the next shift.',
-    body: 'Depot charging for e-buses, delivery fleets, cabs and two- and three-wheelers, with load management so you do not over-pay for capacity.',
-    tags: ['Load balancing', 'Fleet dashboards', '2W / 3W / 4W / bus'],
+    no: '05',
+    title: 'Fleet & Logistics',
+    lead: 'Ready for the next run.',
+    body: 'Charging infrastructure planning for fleet operators and logistics businesses.',
+    tags: ['Fleet operators', 'Logistics businesses'],
+    cta: 'Enquire for Fleet Charging',
     img: 'charge-09',
   },
   {
-    id: 'care',
-    no: '05',
-    title: 'Maintenance & AMC',
-    lead: 'Chargers that stay switched on.',
-    body: 'Annual maintenance contracts, remote monitoring, firmware updates and on-site repair, for chargers we install and ones we did not.',
-    tags: ['Preventive visits', 'Remote diagnostics', 'Spare parts'],
-    img: 'charge-01',
+    id: 'destinations',
+    no: '06',
+    title: 'EVIBE Experience Destinations',
+    lead: 'Charge. Dine. Discover. Experience.',
+    body: 'Integrated charging, café, food outlets, seating and customer amenities, bringing more to every charging stop.',
+    tags: ['Charging + café', 'Food outlets & seating', 'Customer amenities'],
+    cta: 'Explore Destinations',
+    img: 'charge-07',
   },
 ];
 
+// Infrastructure & project coordination
 export const process = [
-  { no: '01', title: 'Site survey', body: 'We visit, check your supply, load and parking layout, and listen to how you will use the chargers.' },
-  { no: '02', title: 'Design & approvals', body: 'A written proposal with charger choice, single-line diagram and cost. We handle society and DISCOM paperwork.' },
-  { no: '03', title: 'Install & commission', body: 'Certified electricians install, test and commission every point, then show your team how to use it.' },
-  { no: '04', title: 'Monitor & maintain', body: 'Remote monitoring and scheduled maintenance keep uptime high. One call reaches a real engineer.' },
+  { no: '01', tag: 'Understand', title: 'Requirement assessment', body: 'Understand location, usage, budget and expected charging demand.' },
+  { no: '02', tag: 'Assess', title: 'Site feasibility', body: 'Review site layout, parking, electrical capacity and deployment conditions.' },
+  { no: '03', tag: 'Select', title: 'Technology selection', body: 'Evaluate suitable DC charging equipment from multiple technology partners.' },
+  { no: '04', tag: 'Plan', title: 'Infrastructure planning', body: 'Coordinate civil, electrical and charging infrastructure requirements with specialist partners.' },
+  { no: '05', tag: 'Coordinate', title: 'Project execution', body: 'Coordinate procurement, installation and associated EPC activities with the appointed vendors.' },
+  { no: '06', tag: 'Hand over', title: 'Commissioning & handover', body: 'Coordinate testing, commissioning and operational handover.' },
 ];
-
-// VERIFY: these describe the offer. Change them to match what EVIBE actually provides.
-export const impact = {
-  kicker: 'What you get',
-  title: 'Numbers that matter when you plug in.',
-  stats: [
-    { value: 48, suffix: 'h', label: 'From enquiry to site survey' },
-    { value: 240, suffix: ' kW', label: 'Highest DC charger power we deploy' },
-    { value: 24, suffix: '/7', label: 'Remote monitoring on every AMC site' },
-    { value: 1, suffix: '', label: 'Team from survey to service' },
-  ],
+export const processIntro = {
+  kicker: 'Infrastructure & project coordination',
+  title: 'One integrated approach. Multiple technology partners.',
+  body: 'EVIBE coordinates the project journey and works with specialist partners for the relevant equipment, infrastructure and execution packages.',
+  note: 'Project scope is defined individually. Charger supply and installation, electrical infrastructure, transformer and HT/LT works, civil works and other specialist activities may be delivered by appointed partners. EVIBE’s role and each partner’s responsibility will be made clear in the project scope.',
 };
 
-export const galleryTags = ['All', 'Public & fast', 'Commercial', 'Home', 'Fleet'];
+// ── Franchise ─────────────────────────────────────────────────
+export const franchise = {
+  kicker: 'Franchise opportunities',
+  title: ['Choose Your EVIBE.', 'Build the Future of', 'Electric Experiences.'],
+  body: 'Three franchise formats configured around investment capacity, land availability and local market requirements. Final scope and commercial terms are discussed after understanding the proposed site.',
+  tiers: [
+    {
+      id: 'starter',
+      format: 'Entry format',
+      name: 'EVIBE STARTER',
+      tagline: 'Start Electric. Start Smart.',
+      features: ['Compact EV charging destination', 'Essential DC charging setup', 'Compact café / refreshment outlet', 'Customer waiting space', 'Expandable site planning'],
+      type: 'EVIBE Starter Franchise',
+    },
+    {
+      id: 'signature',
+      format: 'Premium format',
+      name: 'EVIBE SIGNATURE',
+      tagline: 'More Than a Stop. An Experience.',
+      features: ['Multiple DC charging points', 'Café and F&B options', 'Indoor customer seating', 'Premium branded canopy', 'Customer amenities and office'],
+      type: 'EVIBE Signature Franchise',
+    },
+    {
+      id: 'flagship',
+      format: 'Flagship format',
+      name: 'EVIBE FLAGSHIP',
+      tagline: 'The Ultimate Electric Experience.',
+      features: ['High-capacity DC charging', 'Multiple café and F&B outlets', 'Premium indoor / outdoor seating', 'Customer lounge and amenities', 'Technology and membership ecosystem'],
+      type: 'EVIBE Flagship Franchise',
+    },
+  ],
+  note: 'Investment amounts, land sizes, charger counts, returns and payback periods are not published here; these depend on site-specific specifications and approved commercial assumptions.',
+};
+
+// ── Partner with us ──────────────────────────────────────────
+export const partner = {
+  hero: {
+    kicker: 'Partner With EVIBE',
+    title: ['Let’s build the', 'electric experience', 'together.'],
+    sub: 'Landowners, property owners, hospitality and commercial sites, and technology or business partners: tell us what you are exploring and the EVIBE team will discuss the next steps.',
+  },
+  types: [
+    { id: 'land', title: 'Landowners', body: 'Have a location with potential? Explore whether your property may be suitable for an EV charging solution or an EVIBE experience destination.', type: 'Landowner Partnership', cta: 'Submit Property Details' },
+    { id: 'host', title: 'Site hosts', body: 'Gated communities, hotels, offices, malls and roadside destinations: offer EV charging to residents, guests, staff and customers.', type: 'EV Charging Solution', cta: 'Request a Site Assessment' },
+    { id: 'biz', title: 'Technology & business partners', body: 'EVIBE works with selected manufacturing, technology and execution partners across hardware, infrastructure and operations.', type: 'Technology / Business Partnership', cta: 'Start a Conversation' },
+  ],
+  landowner: {
+    kicker: 'Landowner partnerships',
+    title: 'Have a location with potential?',
+    body: 'Partner with EVIBE to explore whether your property may be suitable for an EV charging solution or an EVIBE experience destination.',
+    assessTitle: 'What helps us assess a property?',
+    assess: ['Location and road connectivity', 'Land area and frontage', 'Access and vehicle movement', 'Power availability or feasibility information', 'Ownership / lease status and expected terms'],
+  },
+};
+
+// ── Enquiry form ─────────────────────────────────────────────
+export const enquiry = {
+  kicker: 'Connect with EVIBE',
+  title: ['Let’s explore the', 'right opportunity.'],
+  body: 'For charging solutions, franchise opportunities, landowner partnerships or business collaborations, share a few details and our team can take the discussion forward.',
+  types: [
+    'EV Charging Solution',
+    'Gated Communities & Apartments',
+    'Hotels & Hospitality',
+    'Commercial & Corporate',
+    'Highway Charging',
+    'Fleet & Logistics',
+    'EVIBE Experience Destinations',
+    'EVIBE Starter Franchise',
+    'EVIBE Signature Franchise',
+    'EVIBE Flagship Franchise',
+    'Landowner Partnership',
+    'Technology / Business Partnership',
+  ],
+  land: ['Owned property', 'Leased property', 'Looking for a property', 'Not applicable'],
+};
+// Back-compat for older components
+export const contact = { ...enquiry, types: enquiry.types };
+
+// ── Gallery ──────────────────────────────────────────────────
+export const galleryTags = ['All', 'Highway & public', 'Commercial', 'Communities', 'Fleet'];
 export const gallery = [
-  { img: 'charge-07', alt: 'Electric car beside a public charging station on a city street', span: 'tall', tag: 'Public & fast' },
-  { img: 'charge-06', alt: 'Electric car with headlights on at dusk', span: 'wide', tag: 'Home' },
-  { img: 'charge-04', alt: 'Row of fast-charging pillars with electric cars plugged in', span: 'sq', tag: 'Public & fast' },
+  { img: 'charge-07', alt: 'Electric car beside a public charging station on a city street', span: 'tall', tag: 'Highway & public' },
+  { img: 'charge-06', alt: 'Electric car with headlights on at dusk', span: 'wide', tag: 'Highway & public' },
+  { img: 'charge-04', alt: 'Row of fast-charging pillars with electric cars plugged in', span: 'sq', tag: 'Highway & public' },
   { img: 'charge-08', alt: 'Car connected to a charging kiosk showing a battery icon', span: 'sq', tag: 'Commercial' },
-  { img: 'charge-03', alt: 'Wall-mounted chargers in a covered car park', span: 'wide', tag: 'Commercial' },
+  { img: 'charge-03', alt: 'Wall-mounted chargers in a covered car park', span: 'wide', tag: 'Communities' },
   { img: 'charge-09', alt: 'Top view of six electric cars charging side by side', span: 'tall', tag: 'Fleet' },
-  { img: 'charge-02', alt: 'Electric cars charging at a row of pillars beside a lawn', span: 'sq', tag: 'Public & fast' },
-  { img: 'charge-05', alt: 'Close-up of an open charging port on a white car', span: 'sq', tag: 'Home' },
-  { img: 'charge-01', alt: 'White electric car plugged into a charging station', span: 'wide', tag: 'Public & fast' },
+  { img: 'charge-02', alt: 'Electric cars charging at a row of pillars beside a lawn', span: 'sq', tag: 'Commercial' },
+  { img: 'charge-05', alt: 'Close-up of an open charging port on a white car', span: 'sq', tag: 'Communities' },
+  { img: 'charge-01', alt: 'White electric car plugged into a charging station', span: 'wide', tag: 'Highway & public' },
 ];
 
-// DRAFT: sample testimonials. Replace with real customer quotes before launch.
-export const testimonials = [
-  {
-    quote: 'They surveyed our society parking, sorted the approvals and had twelve chargers running in under a month. Residents stopped asking me when.',
-    name: 'Secretary, residential society',
-    place: 'Apartment complex · 12 AC points',
-  },
-  {
-    quote: 'Our delivery fleet used to queue for one charger. EVIBE re-planned the depot with load balancing and now every vehicle leaves full.',
-    name: 'Operations head, logistics company',
-    place: 'Fleet depot · 3W & 4W',
-  },
-  {
-    quote: 'The install was clean, the cable runs are invisible and the app just works. It feels like part of the house.',
-    name: 'Homeowner',
-    place: 'Independent villa · 7.4 kW wall box',
-  },
-  {
-    quote: 'Guests now pick us partly because they can charge overnight. The branded fascia looks like it was designed with the building.',
-    name: 'General manager, boutique hotel',
-    place: 'Hospitality · 4 AC + 1 DC',
-  },
-];
-
+// ── FAQ ──────────────────────────────────────────────────────
 export const faqs = [
-  {
-    q: 'How long does a home charger installation take?',
-    a: 'Most home installations are finished in a single day once the survey is done and the charger is on site. Apartments can take a little longer if society approval is needed, and we help you with that paperwork.',
-  },
-  {
-    q: 'Which charger is right for my car?',
-    a: 'It depends on your car’s on-board charger, how far you drive and your electricity supply. For most homes a 7.4 kW AC wall box is ideal. During the free survey we check all three and recommend the right unit, not the most expensive one.',
-  },
-  {
-    q: 'Do I need a new electricity connection or a load increase?',
-    a: 'Sometimes. Our load study tells you exactly whether your existing sanctioned load is enough. If an enhancement or a separate EV connection is needed, we prepare and file the application with your DISCOM.',
-  },
-  {
-    q: 'Can you install chargers in an apartment or office parking?',
-    a: 'Yes. We plan shared and individual chargers for residential societies and commercial buildings, including metering so each user pays only for what they use.',
-  },
-  {
-    q: 'Do you set up public or commercial fast-charging stations?',
-    a: 'Yes. We handle site evaluation, transformer and HT works, DC charger supply, civil works, canopy, commissioning and ongoing operations support for public charging hubs.',
-  },
-  {
-    q: 'What does the annual maintenance contract cover?',
-    a: 'Scheduled preventive visits, remote monitoring, firmware updates, priority breakdown response and discounted spare parts. We also take on AMC for chargers installed by others.',
-  },
-  {
-    q: 'How do I get a quote?',
-    a: 'Message us on WhatsApp, call, or send the form on this page. We usually reply the same working day and book a free site survey at a time that suits you.',
-  },
+  { q: 'What does EVIBE do?', a: 'EVIBE is an electric mobility solutions company building an integrated EV charging ecosystem: EVIBE-branded charging solutions, digital charging management, infrastructure deployment coordination and ongoing operational support, under one brand.' },
+  { q: 'Which locations do you work with?', a: 'Gated communities and apartments, hotels and hospitality, commercial and corporate premises, highway charging hubs, fleet and logistics businesses, and EVIBE experience destinations.' },
+  { q: 'What charging technology does EVIBE use?', a: 'EVIBE CHARGE covers DC fast-charging solutions sourced and configured with selected manufacturing partners. We are technology-flexible and evaluate suitable equipment for each project.' },
+  { q: 'Who carries out the installation and infrastructure works?', a: 'EVIBE coordinates the project journey. Charger supply and installation, electrical infrastructure, transformer and HT/LT works, civil works and other specialist activities may be delivered by appointed partners. Each party’s responsibility is made clear in the project scope.' },
+  { q: 'How do the franchise formats work?', a: 'There are three formats: EVIBE Starter, EVIBE Signature and EVIBE Flagship, configured around investment capacity, land availability and local market requirements. Final scope and commercial terms are discussed after understanding the proposed site.' },
+  { q: 'I own land. Can it become an EVIBE location?', a: 'Possibly. Share your property details: location and road connectivity, land area and frontage, access, power availability and ownership or lease status. The EVIBE team will assess its suitability.' },
+  { q: 'Is QR / WhatsApp charging available?', a: 'QR / WhatsApp-enabled charging is a proposed customer journey and is subject to validation. EVIBE CSMS capabilities depend on platform configuration and rollout.' },
+  { q: 'How do I start?', a: 'Use the enquiry form or message us on WhatsApp. Tell us what you are exploring and our team will take the discussion forward.' },
 ];
 
-export const contact = {
-  kicker: 'Start charging',
-  title: ['Let’s plug', 'you in.'],
-  body: 'Tell us where you want to charge. We will reply the same working day with next steps and a time for a free site survey.',
-  types: ['Home', 'Apartment / society', 'Workplace / commercial', 'Fast-charging hub', 'Fleet / depot', 'Maintenance / AMC'],
-};
-
-// About page
-export const aboutPage = {
-  hero: { kicker: 'About EVIBE', title: ['We build the places', 'electric journeys', 'refuel.'], sub: 'EVIBE Mobility Solutions is an EV charging company. We plan, install and look after charging points, from a single wall box to a highway hub.' },
-  story: [
-    { title: 'Why we exist', body: 'Electric vehicles are arriving faster than the places to charge them. Drivers worry about range, societies worry about load, businesses worry about getting it wrong. We started EVIBE to take that worry away with one team that knows the whole job.' },
-    { title: 'How we work', body: 'Every project starts with a site visit and a load study, never a catalogue. We choose the hardware that suits your vehicles, budget and electricity supply, do the civil and electrical work properly, handle the approvals, and then stay on as the people you call.' },
-  ],
-  values: [
-    { k: '01', t: 'Safety first', d: 'Correct cable sizing, earthing and protection on every job. No shortcuts behind the wall.' },
-    { k: '02', t: 'Honest advice', d: 'We recommend the charger you need, not the most expensive one.' },
-    { k: '03', t: 'Clean work', d: 'Tidy cable runs and finishes that look like they belong to the building.' },
-    { k: '04', t: 'Always reachable', d: 'One number, a real engineer, and maintenance plans that keep chargers available.' },
-  ],
-};
+// Legacy exports still referenced by some sections
+export const marquee = [];
+export const testimonials = [];
+export const hero = { primary: 'Explore Solutions', secondary: 'Partner With Us' };
+export const about = { pillars: [] };
+export const impact = values;
+export const manifesto = intro.body;

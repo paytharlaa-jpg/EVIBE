@@ -8,7 +8,7 @@ import { TLink } from '../lib/transition';
 
 // Closing call to action: giant kinetic line, an energy bar that charges as you
 // arrive, and the three ways to reach EVIBE.
-export default function CtaBand({ title = ['Running low?', 'Let’s plug you in.'] }) {
+export default function CtaBand({ title = ['Let’s build the', 'electric experience together.'] }) {
   const root = useRef(null);
   useGsap(
     () => {
@@ -24,7 +24,7 @@ export default function CtaBand({ title = ['Running low?', 'Let’s plug you in.
   return (
     <section className="cb section" ref={root} data-theme="dark" aria-labelledby="cb-title">
       <div className="cb-bg" aria-hidden="true">
-        EVIBE · CHARGE · EVIBE · CHARGE · EVIBE ·
+        CHARGE · DINE · DISCOVER · EXPERIENCE ·
       </div>
       <div className="wrap">
         <h2 className="cb-title" id="cb-title" aria-label={title.join(' ')}>
@@ -39,16 +39,16 @@ export default function CtaBand({ title = ['Running low?', 'Let’s plug you in.
         </div>
         <div className="cb-actions">
           <Magnetic>
-            <a className="btn btn--primary" href={waLink('Hi EVIBE, I would like a quote for EV charging.')} target="_blank" rel="noopener">
-              <span className="btn-label">WhatsApp us</span>
-            </a>
+            <TLink className="btn btn--primary" to="/contact">
+              <span className="btn-label">Start a Conversation</span>
+            </TLink>
           </Magnetic>
+          <a className="btn btn--ghost" href={waLink()} target="_blank" rel="noopener">
+            <span className="btn-label">WhatsApp</span>
+          </a>
           <a className="btn btn--ghost" href={company.phoneHref}>
             <span className="btn-label">Call {company.phone}</span>
           </a>
-          <TLink className="btn btn--ghost" to="/contact">
-            <span className="btn-label">Send an enquiry</span>
-          </TLink>
         </div>
       </div>
     </section>

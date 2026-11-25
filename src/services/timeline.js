@@ -14,9 +14,9 @@ export const WORK_X = 40;
 export const HUB_X = 80;
 
 export const CHAPTERS = [
-  { id: 'home', from: 0.0, to: 0.27, rate: '7.4 kW AC · overnight', label: 'Home charging' },
-  { id: 'work', from: 0.31, to: 0.61, rate: '22 kW AC · while you work', label: 'Workplace & commercial' },
-  { id: 'hub', from: 0.66, to: 1.0, rate: '120 kW DC · minutes', label: 'DC fast-charging hubs' },
+  { id: 'home', from: 0.0, to: 0.27, rate: 'Residents · overnight', label: 'Communities' },
+  { id: 'work', from: 0.31, to: 0.61, rate: 'Staff & visitors · while you work', label: 'Commercial' },
+  { id: 'hub', from: 0.66, to: 1.0, rate: 'DC fast charging · on the road', label: 'Highway' },
 ];
 
 // Charge level shown per set

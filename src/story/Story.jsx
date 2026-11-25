@@ -226,7 +226,7 @@ export default function Story({ tier, onReady }) {
             <span data-hud="big">8</span>
             <small>%</small>
           </p>
-          <p className="sc-sub">Built, installed and kept running by EVIBE.</p>
+          <p className="sc-sub">Not just chargers. An entire EV charging ecosystem.</p>
         </div>
 
         {/* 06 · go */}
@@ -234,12 +234,12 @@ export default function Story({ tier, onReady }) {
           <img className="sc-logo" src="/brand/EVIBE_Primary_with_Tagline_Reverse.svg" alt="EVIBE, Elevating the Electric Experience" width="520" height="160" />
           <div className="sc-ctas">
             <Magnetic>
-              <a className="btn btn--primary" href={waLink('Hi EVIBE, I would like to book a free site survey.')} target="_blank" rel="noopener">
-                <span className="btn-label">Book a free site survey</span>
-              </a>
+              <TLink className="btn btn--primary" to="/services">
+                <span className="btn-label">Explore Solutions</span>
+              </TLink>
             </Magnetic>
-            <TLink className="btn btn--ghost" to="/services">
-              <span className="btn-label">Explore services</span>
+            <TLink className="btn btn--ghost" to="/partner">
+              <span className="btn-label">Partner With Us</span>
             </TLink>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { TLink } from '../lib/transition';
 import MotionToggle from '../components/MotionToggle';
 import { useGsap } from '../lib/useGsap';
 import { prefersReducedMotion } from '../lib/device';
-import { company, nav, services, waLink } from '../content';
+import { company, nav, waLink } from '../content';
 
 export default function Footer() {
   const root = useRef(null);
@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="ft-top">
           <div className="ft-brand">
             <img src="/brand/EVIBE_Primary_with_Tagline_Reverse.svg" alt="EVIBE, Elevating the Electric Experience" width="260" height="78" loading="lazy" />
-            <p>EV charging points for homes, businesses, fleets and public hubs.</p>
+            <p>{company.blurb}</p>
           </div>
           <nav className="ft-col" aria-label="Footer">
             <h3>Explore</h3>
@@ -43,10 +43,20 @@ export default function Footer() {
             ))}
           </nav>
           <div className="ft-col">
-            <h3>Services</h3>
-            {services.map((s) => (
-              <TLink key={s.id} to="/services" className="u-link">
-                {s.title}
+            <h3>Opportunities</h3>
+            <TLink to="/franchise" className="u-link">
+              Franchise Models
+            </TLink>
+            <TLink to="/partner" className="u-link">
+              Landowner Partnerships
+            </TLink>
+            <TLink to="/contact" className="u-link">
+              Business Enquiries
+            </TLink>
+            <h3 className="ft-sub">Technology</h3>
+            {['EVIBE CSMS', 'EVIBE IQ', 'EVIBE Miles', 'Digital Charging'].map((t) => (
+              <TLink key={t} to="/about#technology" className="u-link">
+                {t}
               </TLink>
             ))}
           </div>

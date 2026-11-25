@@ -2,14 +2,14 @@ import { useRef } from 'react';
 import { gsap } from '../lib/scroll';
 import { useGsap } from '../lib/useGsap';
 import { prefersReducedMotion } from '../lib/device';
-import { process } from '../content';
+import { process, processIntro } from '../content';
 
 // Motion graphic: a power line draws itself across the page as you scroll,
 // an energy pulse rides its tip, and each step lights up as the line reaches it.
 const DESK = 'M0 210 C 140 210, 180 90, 330 90 S 520 300, 680 300 S 880 60, 1040 90 S 1260 260, 1400 200';
-const NODES_X = [0.2, 0.44, 0.7, 0.93]; // where on the path each step sits (0..1 length)
+const NODES_X = [0.08, 0.25, 0.42, 0.59, 0.76, 0.93]; // where on the path each step sits (0..1 length)
 
-export default function ProcessGraphic({ title = 'From empty bay to first charge.', kicker = 'How it works' }) {
+export default function ProcessGraphic({ title = processIntro.title, kicker = processIntro.kicker, note = false }) {
   const root = useRef(null);
   useGsap(
     () => {
@@ -63,6 +63,7 @@ export default function ProcessGraphic({ title = 'From empty bay to first charge
           <h2 className="display-sm" id="pg-title">
             {title}
           </h2>
+          <p className="pg-intro">{processIntro.body}</p>
         </header>
         <div className="pg-stage">
           <svg className="pg-svg" viewBox="0 0 1400 380" preserveAspectRatio="none" aria-hidden="true">
@@ -91,11 +92,13 @@ export default function ProcessGraphic({ title = 'From empty bay to first charge
             {process.map((s) => (
               <li className="pg-step" key={s.no}>
                 <span className="pg-no">{s.no}</span>
+                <span className="pg-tag">{s.tag}</span>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
               </li>
             ))}
           </ol>
+          {note && <p className="pg-note">{processIntro.note}</p>}
         </div>
       </div>
     </section>

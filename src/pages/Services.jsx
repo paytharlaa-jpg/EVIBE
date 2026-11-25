@@ -3,13 +3,14 @@ import { gsap, ScrollTrigger } from '../lib/scroll';
 import { useGsap } from '../lib/useGsap';
 import { prefersReducedMotion, detectTier } from '../lib/device';
 import ServicesFilm from '../services/ServicesFilm';
-import { services, waLink } from '../content';
+import { services, waLink, solutionsIntro } from '../content';
 import PageShell from '../components/PageShell';
 import PageHero from '../components/PageHero';
 import Picture from '../components/Picture';
 import Magnetic from '../components/Magnetic';
 import ProcessGraphic from '../sections/ProcessGraphic';
 import FAQ from '../sections/FAQ';
+import { TLink } from '../lib/transition';
 import CtaBand from '../sections/CtaBand';
 
 // Full service detail: sticky index on the left, each service a scene with a
@@ -70,9 +71,9 @@ function ServiceDetail() {
                   ))}
                 </ul>
                 <Magnetic>
-                  <a className="btn btn--glow" href={waLink(`Hi EVIBE, I am interested in ${s.title.toLowerCase()}.`)} target="_blank" rel="noopener">
-                    <span className="btn-label">Enquire about {s.title.toLowerCase()}</span>
-                  </a>
+                  <TLink className="btn btn--glow" to={`/contact?type=${encodeURIComponent(s.title)}`}>
+                    <span className="btn-label">{s.cta}</span>
+                  </TLink>
                 </Magnetic>
               </div>
             </article>
@@ -87,17 +88,17 @@ export default function ServicesPage() {
   return (
     <PageShell path="/services">
       <PageHero
-        kicker="Services"
-        title={['Every way', 'to plug in.']}
-        sub="Five services, one team. From a wall box in your garage to a highway fast-charging hub, we plan it, build it and keep it running."
+        kicker="Solutions"
+        title={['Solutions for', 'every setting.']}
+        sub={solutionsIntro.title + ' ' + solutionsIntro.body}
         variant="bars"
         index="02"
       />
       <ServicesFilm tier={detectTier()} />
       <ServiceDetail />
-      <ProcessGraphic />
+      <ProcessGraphic note />
       <FAQ limit={4} />
-      <CtaBand title={['Not sure which fits?', 'Ask an expert.']} />
+      <CtaBand title={['Not sure which fits?', 'Discuss your project.']} />
     </PageShell>
   );
 }

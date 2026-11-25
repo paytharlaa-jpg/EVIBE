@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { gsap } from '../lib/scroll';
 import { useGsap } from '../lib/useGsap';
 import { prefersReducedMotion } from '../lib/device';
-import { services, waLink } from '../content';
+import { services, waLink, solutionsIntro } from '../content';
 import Picture from '../components/Picture';
 import Magnetic from '../components/Magnetic';
 
@@ -70,14 +70,14 @@ export default function Services() {
         <div className="svc-track">
           <div className="svc-intro">
             <p className="eyebrow">Services</p>
-            <h2 className="display" id="services-title" aria-label="Five ways we power you.">
-              {['Five ways', 'we power', 'you.'].map((l) => (
+            <h2 className="display" id="services-title" aria-label="Charging solutions designed around your location.">
+              {['Solutions', 'for every', 'setting.'].map((l) => (
                 <span className="line" key={l} aria-hidden="true">
                   <span className="line-in">{l}</span>
                 </span>
               ))}
             </h2>
-            <p className="svc-intro-sub">From a single wall box in your garage to a highway hub, one team plans, builds and runs it.</p>
+            <p className="svc-intro-sub">{solutionsIntro.body}</p>
             <span className="svc-hint" aria-hidden="true">
               Keep scrolling
               <svg viewBox="0 0 24 24" width="18" height="18">
@@ -109,8 +109,8 @@ export default function Services() {
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
-                  <a className="svc-reveal u-link svc-cta" href={waLink(`Hi EVIBE, I am interested in ${s.title.toLowerCase()}.`)} target="_blank" rel="noopener">
-                    Ask about {s.title.toLowerCase()} →
+                  <a className="svc-reveal u-link svc-cta" href={waLink(`Hi EVIBE, I am interested in ${s.title}.`)} target="_blank" rel="noopener">
+                    {s.cta} →
                   </a>
                 </div>
               </div>
@@ -119,10 +119,10 @@ export default function Services() {
 
           <div className="svc-outro">
             <p className="svc-outro-title">Not sure which one fits?</p>
-            <p>Tell us about your site. We will recommend the right setup, with no obligation.</p>
+            <p>Tell us what you are exploring. The EVIBE team can understand your requirement and discuss the next steps.</p>
             <Magnetic>
-              <a className="btn btn--primary" href={waLink('Hi EVIBE, can you help me choose the right charging setup?')} target="_blank" rel="noopener">
-                <span className="btn-label">Talk to an expert</span>
+              <a className="btn btn--primary" href={waLink('Hi EVIBE, can you help me choose the right charging solution?')} target="_blank" rel="noopener">
+                <span className="btn-label">Discuss Your Project</span>
               </a>
             </Magnetic>
           </div>

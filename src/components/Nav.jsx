@@ -91,9 +91,9 @@ export default function Nav() {
         </nav>
         <div className="nav-actions">
           <Magnetic strength={0.25}>
-            <a className="btn btn--sm btn--glow" href={waLink('Hi EVIBE, I would like a quote for EV charging.')} target="_blank" rel="noopener" data-cursor="link">
-              <span className="btn-label">Get a quote</span>
-            </a>
+            <TLink className="btn btn--sm btn--glow" to="/contact" data-cursor="link">
+              <span className="btn-label">Enquire</span>
+            </TLink>
           </Magnetic>
           <Magnetic strength={0.4}>
             <button
