@@ -5,6 +5,7 @@ import App from './App';
 import './styles.css';
 import './styles-v2.css';
 import './styles-v4.css';
+import './styles-iq.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

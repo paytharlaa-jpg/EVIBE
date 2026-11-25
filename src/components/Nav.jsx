@@ -17,11 +17,28 @@ export default function Nav() {
 
   // Hide on scroll down, reveal on scroll up.
   useEffect(() => {
+    // Hysteresis: only flip after a deliberate 24px move, so touch jitter and
+    // momentum wobble never make the bar blink.
+    let anchor = 0;
+    let dir = 0;
     const st = ScrollTrigger.create({
-      start: 120,
+      start: 0,
       end: 'max',
-      onUpdate: (s) => setHidden(s.direction === 1 && s.scroll() > 200),
-      onLeaveBack: () => setHidden(false),
+      onUpdate: (s) => {
+        const y = s.scroll();
+        if (y < 200) {
+          anchor = y;
+          dir = 0;
+          setHidden(false);
+          return;
+        }
+        const d = s.direction;
+        if (d !== dir) {
+          dir = d;
+          anchor = y;
+        }
+        if (Math.abs(y - anchor) > 24) setHidden(d === 1);
+      },
     });
     return () => st.kill();
   }, []);

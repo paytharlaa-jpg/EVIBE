@@ -94,6 +94,7 @@ export default function Story({ tier, onReady }) {
       big: el.querySelector('[data-hud=big]'),
       hudEl: el.querySelector('.sc-hud'),
     };
+    const pEls = [...el.querySelectorAll('.story-shade, .letterbox, .sc-hud')];
     let last = -1;
     let lastIntro = -1;
     const tick = () => {
@@ -102,7 +103,10 @@ export default function Story({ tier, onReady }) {
       if (Math.abs(p - last) < 0.00005 && iv === lastIntro) return;
       last = p;
       lastIntro = iv;
-      el.style.setProperty('--p', p.toFixed(4));
+      // only the few elements that read --p (setting it on the section would
+      // restyle every descendant each frame)
+      const pv = p.toFixed(4);
+      pEls.forEach((x) => x.style.setProperty('--p', pv));
       cards.forEach((c, i) => {
         const k = CARDS[i];
         const span = k.to - k.from;

@@ -41,7 +41,7 @@ export default function Contact({ bare = false, type, cards = true, id = 'enquir
         { yPercent: 110, letterSpacing: '0.08em' },
         { yPercent: 0, letterSpacing: '-0.04em', duration: 1.5, stagger: 0.1, ease: 'expo.out', scrollTrigger: { trigger: '.ct-title', start: 'top 85%' } },
       );
-      if (!bare) gsap.fromTo('.ct-title', { scale: 1.08, transformOrigin: '0% 100%' }, { scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 20%', scrub: true } });
+      if (!bare) gsap.fromTo('.ct-title', { scale: 1.08, transformOrigin: '0% 100%' }, { scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 20%', scrub: 0.9 } });
       if (cards) gsap.from('.ct-card', { y: 60, opacity: 0, rotateX: -20, duration: 1.1, stagger: 0.1, ease: 'expo.out', scrollTrigger: { trigger: '.ct-cards', start: 'top 85%' } });
       gsap.from('.ct-form .field, .ct-form .ct-actions', { y: 30, opacity: 0, duration: 0.9, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.ct-form', start: 'top 85%' } });
     },

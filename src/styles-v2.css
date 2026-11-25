@@ -213,7 +213,7 @@
 /* ───────── The film ───────── */
 .story {
   position: relative;
-  height: 1000vh;
+  height: 1300vh;
 }
 .story.is-static {
   height: auto;
@@ -248,17 +248,20 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: calc(7vh * (1 - var(--p, 0) * 1.6));
-  min-height: 0;
+  height: 7vh;
+  transform: scaleY(max(0, 1 - var(--p, 0) * 1.6));
+  will-change: transform;
   background: #000;
   z-index: 2;
   pointer-events: none;
 }
 .letterbox--top {
   top: 0;
+  transform-origin: 50% 0;
 }
 .letterbox--bottom {
   bottom: 0;
+  transform-origin: 50% 100%;
 }
 
 .sc {
@@ -488,8 +491,8 @@
   position: absolute;
   z-index: 3;
   left: 50%;
-  bottom: calc(7vh * (1 - var(--p, 0) * 1.6) + 22px);
-  translate: -50% 0;
+  bottom: 22px;
+  translate: -50% calc(-7vh * max(0, 1 - var(--p, 0) * 1.6));
   display: flex;
   align-items: center;
   gap: 26px;
@@ -630,7 +633,7 @@
 }
 @media (max-width: 767px) {
   .story {
-    height: 900vh;
+    height: 1150vh;
   }
   .sc,
   .sc-low,
@@ -1806,7 +1809,7 @@ html.reduce-motion .ft-shade {
 /* ───────── Services film: three drivers, one network ───────── */
 .svf {
   position: relative;
-  height: 820vh;
+  height: 1400vh;
 }
 .svf.is-static {
   height: auto;
@@ -1985,7 +1988,7 @@ html.reduce-motion .ft-shade {
 }
 @media (max-width: 767px) {
   .svf {
-    height: 760vh;
+    height: 1250vh;
   }
   .svf-card {
     top: calc(var(--nav-h) + 40px);
@@ -2508,3 +2511,32 @@ html.reduce-motion .eco-node-upright,
 html.reduce-motion .eco-core {
   animation: none;
 }
+
+/* Touch screens: live blur over a moving WebGL canvas flickers on many phones.
+   Use a solid tint there instead. */
+@media (hover: none), (pointer: coarse) {
+  .sc-hud,
+  .svf-meter,
+  .svf-rail,
+  .iqc-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: rgba(4, 12, 28, 0.86) !important;
+  }
+}
+
+/* Solutions film: franchise colour identity per chapter */
+.svf-card--teal { --tc: #12ddc6; }
+.svf-card--blue { --tc: #4f9dff; }
+.svf-card--gold { --tc: #e8b44c; }
+.svf-card .svf-kicker,
+.svf-card .svf-line--accent { color: var(--tc, var(--teal)); }
+.svf-card--blue .svf-bar span { background: linear-gradient(90deg, #2f8dff, #7fd0ff); }
+.svf-card--gold .svf-bar span { background: linear-gradient(90deg, #c9902c, #ffd98a); }
+.svf-rail-item--blue { --tc: #4f9dff; }
+.svf-rail-item--gold { --tc: #e8b44c; }
+.svf-rail-item--teal { --tc: #12ddc6; }
+.svf-rail-item .svf-rail-no,
+.svf-rail-item .svf-rail-bar span { color: var(--tc); background-color: var(--tc); }
+.svf-rail-item .svf-rail-no { background: none; }
+.svf-rail-item.is-active { background: color-mix(in srgb, var(--tc) 16%, transparent); }

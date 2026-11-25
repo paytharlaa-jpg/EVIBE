@@ -1,8 +1,9 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, Lightformer, PerformanceMonitor } from '@react-three/drei';
+import { Environment, Lightformer } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
+import { isTouch } from '../lib/device';
 import { S } from './state';
 import { useIntroMoving } from '../lib/intro';
 import { camera as cameraAt, carPose, worldZ, battery, charging, plug, lowAlarm, speedKmh, BAY_X, STATION_Z, LANE_L } from './timeline';
@@ -19,7 +20,7 @@ function Director() {
   const smoothLook = useMemo(() => new THREE.Vector3(), []);
   const first = useMemo(() => ({ v: true }), []);
   useFrame((state, dt) => {
-    S.p = first.v ? S.target : damp(S.p, S.target, 3.6, Math.min(dt, 0.35));
+    S.p = first.v ? S.target : damp(S.p, S.target, 2.5, Math.min(dt, 0.35));
     if (Math.abs(S.target - S.p) > 0.25) S.p = S.target - Math.sign(S.target - S.p) * 0.25; // never lag a whole chapter
     const car = carPose(S.p);
     const { pos, look: l } = cameraAt(S.p, car, S.mobile);
@@ -32,10 +33,10 @@ function Director() {
       smoothLook.copy(look);
       first.v = false;
     } else {
-      cam.position.x = damp(cam.position.x, pos[0] + Math.sin(t * 1.3) * shake, 6, dt);
-      cam.position.y = damp(cam.position.y, pos[1] + Math.sin(t * 2.1) * shake * 0.6, 6, dt);
-      cam.position.z = damp(cam.position.z, pos[2], 6, dt);
-      smoothLook.lerp(look, 1 - Math.exp(-6 * dt));
+      cam.position.x = damp(cam.position.x, pos[0] + Math.sin(t * 1.3) * shake, 4.2, dt);
+      cam.position.y = damp(cam.position.y, pos[1] + Math.sin(t * 2.1) * shake * 0.6, 4.2, dt);
+      cam.position.z = damp(cam.position.z, pos[2], 4.2, dt);
+      smoothLook.lerp(look, 1 - Math.exp(-4.2 * Math.min(dt, 0.1)));
     }
     cam.lookAt(smoothLook);
   });
@@ -160,14 +161,16 @@ export default function StoryScene({ tier, active, onReady }) {
     if (!introMoving) setMountScene(true);
   }, [introMoving]);
   const maxDpr = tier === 3 ? 1.6 : tier === 2 ? 1.35 : 1;
-  const [dpr, setDpr] = useState(maxDpr);
+  // Fixed pixel ratio: changing it mid-scroll resizes the canvas and flashes a frame.
+  const [dpr] = useState(() => Math.min(maxDpr, window.devicePixelRatio || 1, isTouch() ? 1.25 : maxDpr));
+  const [post] = useState(() => tier >= 2 && !isTouch());
   return (
     <Canvas
       className="story-canvas"
       frameloop={active ? 'always' : introMoving ? 'never' : 'demand'}
       dpr={dpr}
       gl={{ antialias: tier < 2, powerPreference: 'high-performance', stencil: false }}
-      camera={{ fov: S.mobile ? 58 : 40, near: 0.1, far: 700, position: [0, 3, 10] }}
+      camera={{ fov: S.mobile ? 58 : 40, near: 0.2, far: 300, position: [0, 3, 10] }}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
         gl.toneMappingExposure = 1.05;
@@ -175,7 +178,6 @@ export default function StoryScene({ tier, active, onReady }) {
         scene.background = new THREE.Color('#030916');
       }}
     >
-      <PerformanceMonitor onDecline={() => setDpr((d) => Math.max(0.8, d - 0.2))} onIncline={() => setDpr((d) => Math.min(maxDpr, d + 0.2))} />
       <Director />
       <Lights tier={tier} />
       {mountScene && <Suspense fallback={null}>
@@ -186,7 +188,7 @@ export default function StoryScene({ tier, active, onReady }) {
         <Traffic />
         <ReadySignal onReady={onReady} />
       </Suspense>}
-      {tier >= 2 && (
+      {post && (
         <EffectComposer multisampling={0} disableNormalPass>
           <Bloom intensity={1.25} luminanceThreshold={0.85} luminanceSmoothing={0.2} mipmapBlur radius={0.72} />
           <Vignette offset={0.25} darkness={0.75} />

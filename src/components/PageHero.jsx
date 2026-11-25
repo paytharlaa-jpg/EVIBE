@@ -100,7 +100,7 @@ export default function PageHero({ kicker, title, sub, variant = 'circuit', inde
   useGsap(
     () => {
       if (prefersReducedMotion() || compact) return;
-      gsap.timeline({ scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } })
+      gsap.timeline({ scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: 0.9 } })
         .to('.ph-content', { yPercent: -25, opacity: 0, ease: 'none' }, 0)
         .to('.ph-bg', { scale: 1.2, opacity: 0.2, ease: 'none' }, 0)
         .to('.ph-index', { xPercent: -30, ease: 'none' }, 0);

@@ -16,7 +16,7 @@ export default function IntroPillars() {
       gsap.from('.ip-title .line-in', { yPercent: 110, duration: 1.3, stagger: 0.12, ease: 'expo.out', scrollTrigger: { trigger: root.current, start: 'top 75%' } });
       gsap.from('.ip-copy > p, .ip-ctas', { y: 40, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: root.current, start: 'top 65%' } });
       gsap.from('.ip-card', { y: 110, rotateX: -25, opacity: 0, transformOrigin: '50% 100%', duration: 1.3, stagger: 0.1, ease: 'expo.out', scrollTrigger: { trigger: '.ip-grid', start: 'top 85%' } });
-      gsap.fromTo('.ip-tagline', { backgroundSize: '0% 100%' }, { backgroundSize: '100% 100%', ease: 'none', scrollTrigger: { trigger: '.ip-tagline', start: 'top 90%', end: 'top 50%', scrub: true } });
+      gsap.fromTo('.ip-tagline', { backgroundSize: '0% 100%' }, { backgroundSize: '100% 100%', ease: 'none', scrollTrigger: { trigger: '.ip-tagline', start: 'top 90%', end: 'top 50%', scrub: 0.9 } });
     },
     [],
     root,

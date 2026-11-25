@@ -1,20 +1,22 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { gsap, ScrollTrigger, getLenis } from '../lib/scroll';
 import { isMobileWidth, prefersReducedMotion } from '../lib/device';
-import { services, waLink } from '../content';
+import { franchise } from '../content';
+import { TLink } from '../lib/transition';
 import { SS } from './state';
-import { CHAPTERS, range, homeCharge, workCharge, hubCharge } from './timeline';
+import { CHAPTERS, range, cafeCharge, sigCharge, flagCharge } from './timeline';
 import Picture from '../components/Picture';
 
 const ServicesScene = lazy(() => import('./ServicesScene'));
 
-// "Three drivers, one network": a pinned film on the Services page. Scrolling
-// flies the camera from a home garage (overnight AC) to a workplace car park
-// (AC while you work) to a highway hub (DC fast charging).
+// A pinned film on the Solutions page that walks through the three EVIBE
+// formats: Starter (café), Signature and Flagship. DC charging only.
+const NAME = { starter: 'EVIBE Starter', signature: 'EVIBE Signature', flagship: 'EVIBE Flagship' };
+const tier = (id) => franchise.tiers.find((t) => t.id === id);
 const COPY = {
-  home: { svc: services.find((s) => s.id === 'communities'), kicker: '01 · Gated communities & apartments', title: ['Come home.', 'Wake up charged.'], level: homeCharge },
-  work: { svc: services.find((s) => s.id === 'commercial'), kicker: '02 · Commercial & corporate', title: ['Park.', 'Charge while you work.'], level: workCharge },
-  hub: { svc: services.find((s) => s.id === 'highway'), kicker: '03 · Highway charging', title: ['Fast charging', 'where the road goes.'], level: hubCharge },
+  cafe: { t: tier('starter'), kicker: '01 · EVIBE Starter', title: ['Charge your car.', 'Enjoy your coffee.'], body: 'A compact EV charging destination with a combined mini café and customer waiting room. Plug in, step inside and relax while your car charges outside.', level: cafeCharge },
+  sig: { t: tier('signature'), kicker: '02 · EVIBE Signature', title: ['More than a stop.', 'An experience.'], level: sigCharge },
+  flag: { t: tier('flagship'), kicker: '03 · EVIBE Flagship', title: ['The ultimate', 'electric experience.'], level: flagCharge },
 };
 
 export default function ServicesFilm({ tier }) {
@@ -78,7 +80,7 @@ export default function ServicesFilm({ tier }) {
   };
 
   return (
-    <section className={`svf ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-label="One ecosystem, every location: communities, commercial and highway charging">
+    <section className={`svf ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-label="Three EVIBE formats: Starter, Signature and Flagship">
       <div className="svf-stage" ref={stage}>
         <div className="svf-gl" aria-hidden="true">
           {tier > 0 ? (
@@ -91,13 +93,13 @@ export default function ServicesFilm({ tier }) {
         </div>
         <div className="svf-shade" aria-hidden="true" />
         <p className="svf-head" aria-hidden="true">
-          One ecosystem. <b>Every location.</b>
+          Three formats. <b>One ecosystem.</b>
         </p>
 
         {CHAPTERS.map((ch) => {
           const c = COPY[ch.id];
           return (
-            <article className="svf-card" data-ch key={ch.id} aria-labelledby={`svf-${ch.id}`}>
+            <article className={`svf-card svf-card--${c.t.color}`} data-ch key={ch.id} aria-labelledby={`svf-${ch.id}`}>
               <p className="svf-kicker">{c.kicker}</p>
               <h2 className="svf-title" id={`svf-${ch.id}`}>
                 {c.title.map((l, i) => (
@@ -106,7 +108,7 @@ export default function ServicesFilm({ tier }) {
                   </span>
                 ))}
               </h2>
-              <p className="svf-body">{c.svc.body}</p>
+              <p className="svf-body">{c.body || c.t.lead}</p>
               <div className="svf-meter" aria-hidden="true">
                 <div className="svf-meter-top">
                   <span>{ch.rate}</span>
@@ -118,16 +120,16 @@ export default function ServicesFilm({ tier }) {
                   <span data-bar />
                 </div>
               </div>
-              <a className="u-link svf-cta" href={waLink(`Hi EVIBE, I am interested in ${c.svc.title}.`)} target="_blank" rel="noopener">
-                {c.svc.cta} →
-              </a>
+              <TLink className="u-link svf-cta" to={`/franchise#${c.t.id}`}>
+                Explore {NAME[c.t.id]} →
+              </TLink>
             </article>
           );
         })}
 
         <nav className="svf-rail" aria-label="Charging stories">
           {CHAPTERS.map((ch, i) => (
-            <button type="button" className="svf-rail-item" key={ch.id} onClick={jump(ch)}>
+            <button type="button" className={`svf-rail-item svf-rail-item--${COPY[ch.id].t.color}`} key={ch.id} onClick={jump(ch)}>
               <span className="svf-rail-no">0{i + 1}</span>
               <span className="svf-rail-label">{ch.label}</span>
               <span className="svf-rail-bar">

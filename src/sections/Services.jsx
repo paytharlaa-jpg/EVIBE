@@ -38,10 +38,10 @@ export default function Services() {
         gsap.utils.toArray('.svc-panel').forEach((p) => {
           const media = p.querySelector('.svc-media');
           const img = p.querySelector('img');
-          gsap.fromTo(media, { clipPath: 'inset(12% 30% 12% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left 95%', end: 'left 35%', scrub: true } });
-          gsap.fromTo(img, { xPercent: -12, scale: 1.25 }, { xPercent: 12, scale: 1.1, ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left right', end: 'right left', scrub: true } });
-          gsap.from(p.querySelectorAll('.svc-reveal'), { y: 60, opacity: 0, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left 75%', end: 'left 40%', scrub: true } });
-          gsap.fromTo(p.querySelector('.svc-no'), { xPercent: 40 }, { xPercent: -40, ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left right', end: 'right left', scrub: true } });
+          gsap.fromTo(media, { clipPath: 'inset(12% 30% 12% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left 95%', end: 'left 35%', scrub: 0.9 } });
+          gsap.fromTo(img, { xPercent: -12, scale: 1.25 }, { xPercent: 12, scale: 1.1, ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left right', end: 'right left', scrub: 0.9 } });
+          gsap.from(p.querySelectorAll('.svc-reveal'), { y: 60, opacity: 0, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left 75%', end: 'left 40%', scrub: 0.9 } });
+          gsap.fromTo(p.querySelector('.svc-no'), { xPercent: 40 }, { xPercent: -40, ease: 'none', scrollTrigger: { trigger: p, containerAnimation: scroll, start: 'left right', end: 'right left', scrub: 0.9 } });
         });
         gsap.from('.svc-intro .line-in', { yPercent: 110, duration: 1.2, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: root.current, start: 'top 70%' } });
       });
@@ -53,7 +53,7 @@ export default function Services() {
             scale: 0.9,
             opacity: 0.45,
             ease: 'none',
-            scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 15%', scrub: true },
+            scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 15%', scrub: 0.9 },
           });
         });
         gsap.from('.svc-intro .line-in', { yPercent: 110, duration: 1.2, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: root.current, start: 'top 75%' } });

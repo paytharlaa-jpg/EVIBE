@@ -32,7 +32,7 @@ export default function Gallery({ filterable = false }) {
       gsap.fromTo(
         '.gl-grid',
         { rotateX: 22, yPercent: 8, scale: 0.9, transformPerspective: 1400, transformOrigin: '50% 0%' },
-        { rotateX: 0, yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 15%', scrub: true } },
+        { rotateX: 0, yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 15%', scrub: 0.9 } },
       );
       gsap.utils.toArray('.gl-item').forEach((it, i) => {
         gsap.fromTo(it, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.out', delay: (i % 3) * 0.08, scrollTrigger: { trigger: it, start: 'top 92%' } });
@@ -41,7 +41,7 @@ export default function Gallery({ filterable = false }) {
       const mm = gsap.matchMedia();
       mm.add('(min-width: 900px)', () => {
         gsap.utils.toArray('.gl-col').forEach((col, i) => {
-          gsap.fromTo(col, { y: [60, -40, 120][i] }, { y: [-60, 40, -120][i], ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true } });
+          gsap.fromTo(col, { y: [60, -40, 120][i] }, { y: [-60, 40, -120][i], ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: 0.9 } });
         });
       });
       gsap.from('.gl-head .line-in', { yPercent: 110, stagger: 0.08, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: '.gl-head', start: 'top 80%' } });

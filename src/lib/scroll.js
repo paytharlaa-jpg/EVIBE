@@ -4,12 +4,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from './device';
 
 gsap.registerPlugin(ScrollTrigger);
+// Phones: the address bar showing/hiding must not re-measure every pinned film.
+ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
 
 let lenis = null;
 
 export function startSmoothScroll() {
   if (lenis || prefersReducedMotion()) return null;
-  lenis = new Lenis({ duration: 1.15, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, touchMultiplier: 1.4 });
+  // Butter: a low lerp glides every wheel step; wheel distance slightly reduced so
+  // the scroll-driven films do not race. Touch keeps native momentum (no hijack).
+  lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: false, touchMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   // Keep lag smoothing: a long main-thread stall (3D shader compile) must not

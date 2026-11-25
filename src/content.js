@@ -25,6 +25,7 @@ export const pages = [
   { path: '/about', label: 'About', title: 'About EVIBE | Building a Connected Electric Mobility Experience', desc: 'EVIBE is an electric mobility solutions company building an integrated ecosystem for EV charging and customer experiences.' },
   { path: '/services', label: 'Solutions', title: 'EV Charging Solutions | Communities, Hotels, Commercial, Highway, Fleet | EVIBE', desc: 'Charging solutions designed around your location: gated communities, hotels, commercial premises, highway hubs, fleet & logistics and EVIBE experience destinations.' },
   { path: '/franchise', label: 'Franchise', title: 'EVIBE Franchise Opportunities | Starter, Signature, Flagship', desc: 'Choose your EVIBE. Three franchise formats configured around investment capacity, land availability and local market requirements.' },
+  { path: '/iq', label: 'EVIBE IQ', title: 'EVIBE IQ | Find the Right Location for EV Charging', desc: 'EVIBE IQ helps identify and assess promising locations for EV charging infrastructure, so better site decisions start with better location insights.' },
   { path: '/partner', label: 'Partner With Us', title: 'Partner With EVIBE | Landowners & Business Partnerships', desc: 'Have a location with potential? Partner with EVIBE to explore EV charging solutions and EVIBE experience destinations on your property.' },
   { path: '/gallery', label: 'Gallery', title: 'Gallery | EVIBE EV Charging', desc: 'Charging solutions, hubs and electric experiences by EVIBE.' },
   { path: '/faq', label: 'FAQ', title: 'FAQ | EVIBE EV Charging Ecosystem', desc: 'Answers about EVIBE charging solutions, deployment, technology, franchise formats and landowner partnerships.' },
@@ -124,6 +125,86 @@ export const evibeIQ = {
   note: 'Detailed property records, data sources, evaluation methodology, scoring, financial models and operational tools are managed internally by authorised EVIBE administrators.',
 };
 
+// ── EVIBE IQ page ────────────────────────────────────────────
+export const iq = {
+  hero: {
+    kicker: 'Introducing EVIBE IQ',
+    title: ['Find the Right Location.', 'Power the Right Opportunity.'],
+    body: 'EVIBE IQ helps identify and assess promising locations for EV charging infrastructure, so better site decisions can start with better location insights.',
+    cta: 'Explore a Location with EVIBE',
+    tagline: 'Discover. Evaluate. Expand.',
+  },
+  does: {
+    kicker: 'What EVIBE IQ does',
+    title: ['Three simple steps.', 'Smarter site decisions.'],
+    body: 'We bring important location and property considerations together to help evaluate potential EV charging opportunities.',
+    steps: [
+      { id: 'discover', title: 'Discover', body: 'Find and shortlist potential properties in selected cities, business areas and highway corridors.' },
+      { id: 'evaluate', title: 'Evaluate', body: 'Review access, road connectivity, land suitability, nearby activity and charging infrastructure context.' },
+      { id: 'expand', title: 'Expand', body: 'Identify promising opportunities for charging hubs, business locations and EVIBE destinations.' },
+    ],
+  },
+  factors: {
+    kicker: 'What we look at',
+    title: 'A clearer picture of every location.',
+    body: 'EVIBE IQ helps bring these key factors into one structured review.',
+    items: [
+      { id: 'property', title: 'Property details', body: 'Land area, frontage, dimensions and ownership or lease information.' },
+      { id: 'road', title: 'Road access', body: 'Road width, visibility, entry and exit, and vehicle movement.' },
+      { id: 'activity', title: 'Surrounding activity', body: 'Nearby homes, offices, hotels, commercial destinations and services.' },
+      { id: 'charging', title: 'Charging landscape', body: 'Nearby charging options and the local mobility environment, where information is available.' },
+      { id: 'infra', title: 'Infrastructure readiness', body: 'Available space, power-related information and technical checks to be completed.' },
+      { id: 'commercial', title: 'Commercial considerations', body: 'Land cost and project assumptions for an initial business discussion.' },
+    ],
+  },
+  how: {
+    kicker: 'How it works',
+    title: 'From your requirement to a site discussion.',
+    body: 'Our team uses EVIBE IQ internally and works with you through the following steps.',
+    steps: [
+      { tag: 'Tell us', title: 'Share your requirement', body: 'Tell us your preferred location, project type and land requirements.' },
+      { tag: 'We review', title: 'Assess potential locations', body: 'Our team reviews available property and location information.' },
+      { tag: 'Next steps', title: 'Discuss suitable opportunities', body: 'We share relevant findings and plan further checks or a site visit.' },
+    ],
+  },
+  uses: {
+    kicker: 'Where it can help',
+    title: 'Location insights for different EV charging needs.',
+    body: 'EVIBE IQ can support location discussions across a range of use cases.',
+    items: [
+      { title: 'Highway charging hubs', body: 'Explore suitable sites along travel corridors and major routes.', to: '/services#svc-highway' },
+      { title: 'Gated communities', body: 'Review parking, resident needs, access and available space.', to: '/services#svc-communities' },
+      { title: 'Hotels & hospitality', body: 'Consider guest access and charging as an added amenity.', to: '/services#svc-hotels' },
+      { title: 'Commercial properties', body: 'Assess offices, retail destinations and business premises.', to: '/services#svc-commercial' },
+      { title: 'Fleet & logistics', body: 'Consider routes, depot access, vehicle use and power needs.', to: '/services#svc-fleet' },
+      { title: 'EVIBE franchise sites', body: 'Explore land for charging, café, seating and customer facilities.', to: '/franchise' },
+    ],
+  },
+  outputs: {
+    kicker: 'Designed for better decisions',
+    title: 'Useful insights. Clear next steps.',
+    body: 'Depending on the information available, EVIBE may prepare:',
+    items: [
+      { title: 'Property shortlist', body: 'Potential sites and their key details.' },
+      { title: 'Location review', body: 'A simple summary of access, land and surrounding factors.' },
+      { title: 'Feasibility discussion', body: 'Initial opportunities, constraints and questions to verify.' },
+      { title: 'Next-step plan', body: 'Site visit, technical checks and project discussion.' },
+    ],
+  },
+  private: {
+    title: 'How EVIBE IQ works behind the scenes',
+    body: 'The detailed property database, maps, analysis, evaluation methods and commercial tools are managed privately by authorised EVIBE administrators. Customers can request an assessment through the EVIBE team; there is no public login or property database access.',
+  },
+  cta: { title: 'Have a location in mind?', body: 'Tell us where you want to establish EV charging. We’ll discuss the next steps.', button: 'Talk to EVIBE' },
+  form: {
+    kicker: 'Get in touch',
+    title: 'Start with your location.',
+    body: 'Share a few details and the EVIBE team can take the conversation forward.',
+    roles: ['Landowner', 'Franchise investor', 'Business owner', 'Fleet operator', 'Other'],
+    status: ['Owned', 'Available for lease', 'Looking for property', 'Not yet identified'],
+  },
+};
+
 // ── Solutions (services) ──────────────────────────────────────
 export const solutionsIntro = {
   kicker: 'Solutions for every setting',
@@ -212,36 +293,82 @@ export const processIntro = {
 
 // ── Franchise ─────────────────────────────────────────────────
 export const franchise = {
-  kicker: 'Franchise opportunities',
-  title: ['Choose Your EVIBE.', 'Build the Future of', 'Electric Experiences.'],
-  body: 'Three franchise formats configured around investment capacity, land availability and local market requirements. Final scope and commercial terms are discussed after understanding the proposed site.',
+  kicker: 'EVIBE Franchise Opportunities',
+  title: ['Build the Next', 'Electric Experience', 'Destination.'],
+  body: 'Bring EV charging, food and beverage, customer amenities and a welcoming stopover experience together with the EVIBE ecosystem.',
+  tagline: 'Charge. Dine. Discover. Experience.',
+  choose: {
+    kicker: 'Choose your format',
+    title: 'Three ways to build your EVIBE destination.',
+    body: 'Choose a format based on your site, investment capacity, customer opportunity and expansion plans. Final scope is defined after site and feasibility discussions.',
+  },
   tiers: [
     {
       id: 'starter',
-      format: 'Entry format',
+      format: 'Compact format',
       name: 'EVIBE STARTER',
       tagline: 'Start Electric. Start Smart.',
-      features: ['Compact EV charging destination', 'Essential DC charging setup', 'Compact café / refreshment outlet', 'Customer waiting space', 'Expandable site planning'],
+      lead: 'A compact EV charging destination with a combined mini café and customer waiting room of approximately 10 ft × 10 ft.',
+      features: ['EV DC charging setup', 'Combined mini café and customer waiting room', 'Approx. 10 ft × 10 ft combined space', 'Compact, practical site layout'],
       type: 'EVIBE Starter Franchise',
+      color: 'teal',
+      cta: 'Enquire About Starter',
     },
     {
       id: 'signature',
-      format: 'Premium format',
+      format: 'Experience format',
       name: 'EVIBE SIGNATURE',
       tagline: 'More Than a Stop. An Experience.',
-      features: ['Multiple DC charging points', 'Café and F&B options', 'Indoor customer seating', 'Premium branded canopy', 'Customer amenities and office'],
+      lead: 'A more engaging destination combining multi-point charging with food, seating and customer amenities.',
+      features: ['Multiple DC charging points', 'Café and F&B options', 'Indoor customer seating', 'Premium canopy and site identity', 'Customer amenities and office space'],
       type: 'EVIBE Signature Franchise',
+      color: 'blue',
+      cta: 'Enquire About Signature',
     },
     {
       id: 'flagship',
-      format: 'Flagship format',
+      format: 'Premium format',
       name: 'EVIBE FLAGSHIP',
       tagline: 'The Ultimate Electric Experience.',
-      features: ['High-capacity DC charging', 'Multiple café and F&B outlets', 'Premium indoor / outdoor seating', 'Customer lounge and amenities', 'Technology and membership ecosystem'],
+      lead: 'A larger destination concept designed for high-visibility locations and a broader customer experience.',
+      features: ['High-capacity charging concept', 'Multiple café and F&B outlets', 'Premium indoor and outdoor seating', 'Lounge and customer amenities', 'Integrated digital and membership experience'],
       type: 'EVIBE Flagship Franchise',
+      color: 'gold',
+      cta: 'Enquire About Flagship',
     },
   ],
-  note: 'Investment amounts, land sizes, charger counts, returns and payback periods are not published here; these depend on site-specific specifications and approved commercial assumptions.',
+  models: {
+    kicker: 'Partnership structures',
+    title: 'Choose how you want to participate.',
+    body: 'Operating responsibilities, asset ownership, fees and revenue arrangements are agreed and documented for each project.',
+    items: [
+      { id: 'FOFO', name: 'Franchise Owned, Franchise Operated.', body: 'You invest in and own the agreed project assets, and manage day-to-day operations under the agreed EVIBE brand and operating standards.', own: 'Franchise', run: 'Franchise' },
+      { id: 'FOCO', name: 'Franchise Owned, Company Operated.', body: 'You invest in and own the agreed project assets, while EVIBE manages operations under a mutually agreed commercial arrangement.', own: 'Franchise', run: 'EVIBE' },
+      { id: 'COCO', name: 'Company Owned, Company Operated.', body: 'EVIBE develops and operates the destination directly, subject to project approval and the agreed investment structure.', own: 'EVIBE', run: 'EVIBE' },
+    ],
+  },
+  path: {
+    kicker: 'From enquiry to launch',
+    title: 'A clear path to your EVIBE opportunity.',
+    body: 'Every opportunity begins with understanding the location, the partner’s objectives and the right operating format.',
+    steps: [
+      { title: 'Share your interest', body: 'Tell us about your preferred city, site and partnership goals.' },
+      { title: 'Initial evaluation', body: 'EVIBE reviews the site, access, space and broad infrastructure considerations.' },
+      { title: 'Proposal & planning', body: 'Discuss the suitable format, project scope, responsibilities and commercial structure.' },
+      { title: 'Agreement & execution', body: 'Proceed through due diligence, definitive agreements, approvals and project delivery.' },
+    ],
+  },
+  partner: {
+    kicker: 'Partner with EVIBE',
+    title: 'Your location could power the next destination.',
+    body: 'Share your interest and the EVIBE team can discuss the franchise format and partnership structure that may suit your plans.',
+  },
+  form: {
+    title: 'Request a franchise discussion',
+    formats: ['EVIBE Starter', 'EVIBE Signature', 'EVIBE Flagship', 'Need guidance'],
+    models: ['FOFO', 'FOCO', 'COCO', 'Need guidance'],
+  },
+  note: 'All franchise formats and partnership structures are subject to site assessment, technical and commercial due diligence, approvals and definitive agreements. Investment amounts, returns, timelines and operating responsibilities are not guaranteed and will be discussed only through an approved project proposal.',
 };
 
 // ── Partner with us ──────────────────────────────────────────

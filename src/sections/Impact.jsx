@@ -13,7 +13,7 @@ export default function Impact() {
       if (prefersReducedMotion()) return;
       gsap.from('.im-title .ch', { yPercent: 100, opacity: 0, stagger: 0.012, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.im-title', start: 'top 80%' } });
       gsap.from('.im-stat', { y: 60, opacity: 0, stagger: 0.1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.im-stats', start: 'top 85%' } });
-      gsap.fromTo('.im-curve path', { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 70%', end: 'bottom 60%', scrub: true } });
+      gsap.fromTo('.im-curve path', { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 70%', end: 'bottom 60%', scrub: 0.9 } });
     },
     [],
     root,

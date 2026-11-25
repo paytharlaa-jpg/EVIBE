@@ -10,10 +10,12 @@ const errs = [];
 page.on('pageerror', (e) => errs.push(String(e)));
 await page.goto(process.env.URL || 'http://localhost:5173/services', { waitUntil: 'networkidle' });
 await page.waitForSelector('.ld2', { state: 'detached', timeout: 40000 });
+await page.waitForSelector('.svf', { timeout: 60000 });
+await page.waitForTimeout(4000);
 for (const p of list.split(',').map(Number)) {
   await page.evaluate((p) => { const s = document.querySelector('.svf'); window.scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * p); }, p);
-  await page.waitForTimeout(2600);
-  await page.screenshot({ path: `${out}/${mode}-p${String(Math.round(p * 1000)).padStart(4, '0')}.png` });
+  await page.waitForTimeout(+(process.env.WAIT || 2600));
+  await page.screenshot({ timeout: 240000, path: `${out}/${mode}-p${String(Math.round(p * 1000)).padStart(4, '0')}.png` });
 }
 console.log('errors:', errs.length ? errs : 'none');
 await browser.close();

@@ -14,7 +14,7 @@ export default function Footer() {
       // Curtain reveal (desktop): the footer is pinned underneath (CSS sticky)
       // and the page lifts off it. As it opens: the shade lifts, the columns
       // rise in, and the wordmark charges up from the bottom.
-      const st = { trigger: root.current, start: 'top bottom', end: 'bottom bottom', scrub: true };
+      const st = { trigger: root.current, start: 'top bottom', end: 'bottom bottom', scrub: 0.9 };
       const tl = gsap.timeline({ scrollTrigger: st, defaults: { ease: 'none' } });
       tl.fromTo('.ft-shade', { opacity: 1 }, { opacity: 0, duration: 0.6 }, 0)
         .fromTo('.ft-top > *', { y: 70, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.5 }, 0.1)
@@ -55,7 +55,7 @@ export default function Footer() {
             </TLink>
             <h3 className="ft-sub">Technology</h3>
             {['EVIBE CSMS', 'EVIBE IQ', 'EVIBE Miles', 'Digital Charging'].map((t) => (
-              <TLink key={t} to="/about#technology" className="u-link">
+              <TLink key={t} to={t === 'EVIBE IQ' ? '/iq' : '/about#technology'} className="u-link">
                 {t}
               </TLink>
             ))}

@@ -24,10 +24,10 @@ function ServiceDetail() {
         ScrollTrigger.create({ trigger: it, start: 'top 55%', end: 'bottom 55%', onToggle: (s) => s.isActive && setActive(i) });
         if (prefersReducedMotion()) return;
         const media = it.querySelector('.sd-media');
-        gsap.fromTo(media, { clipPath: 'inset(15% 15% 15% 15% round 32px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', ease: 'none', scrollTrigger: { trigger: it, start: 'top 90%', end: 'top 30%', scrub: true } });
-        gsap.fromTo(media.querySelector('img'), { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: it, start: 'top bottom', end: 'bottom top', scrub: true } });
+        gsap.fromTo(media, { clipPath: 'inset(15% 15% 15% 15% round 32px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', ease: 'none', scrollTrigger: { trigger: it, start: 'top 90%', end: 'top 30%', scrub: 0.9 } });
+        gsap.fromTo(media.querySelector('img'), { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: it, start: 'top bottom', end: 'bottom top', scrub: 0.9 } });
         gsap.from(it.querySelectorAll('.sd-copy > *'), { y: 60, opacity: 0, stagger: 0.07, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: it, start: 'top 65%' } });
-        gsap.fromTo(it.querySelector('.sd-no'), { xPercent: 20, opacity: 0 }, { xPercent: -10, opacity: 1, ease: 'none', scrollTrigger: { trigger: it, start: 'top bottom', end: 'bottom top', scrub: true } });
+        gsap.fromTo(it.querySelector('.sd-no'), { xPercent: 20, opacity: 0 }, { xPercent: -10, opacity: 1, ease: 'none', scrollTrigger: { trigger: it, start: 'top bottom', end: 'bottom top', scrub: 0.9 } });
       });
     },
     [],

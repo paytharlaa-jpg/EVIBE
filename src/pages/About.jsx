@@ -3,6 +3,7 @@ import { gsap } from '../lib/scroll';
 import { useGsap } from '../lib/useGsap';
 import { prefersReducedMotion } from '../lib/device';
 import { aboutPage, pillars, technology, evibeIQ } from '../content';
+import { TLink } from '../lib/transition';
 import PageShell from '../components/PageShell';
 import PageHero from '../components/PageHero';
 import Picture from '../components/Picture';
@@ -19,7 +20,7 @@ function StoryBlocks() {
       gsap.utils.toArray('.as-block').forEach((b, i) => {
         const media = b.querySelector('.as-media');
         gsap.fromTo(media, { clipPath: i % 2 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0%)', duration: 1.6, ease: 'expo.inOut', scrollTrigger: { trigger: b, start: 'top 75%' } });
-        gsap.fromTo(media.querySelector('img'), { scale: 1.3, yPercent: -8 }, { scale: 1.05, yPercent: 8, ease: 'none', scrollTrigger: { trigger: b, start: 'top bottom', end: 'bottom top', scrub: true } });
+        gsap.fromTo(media.querySelector('img'), { scale: 1.3, yPercent: -8 }, { scale: 1.05, yPercent: 8, ease: 'none', scrollTrigger: { trigger: b, start: 'top bottom', end: 'bottom top', scrub: 0.9 } });
         gsap.from(b.querySelectorAll('.as-copy > *'), { y: 50, opacity: 0, stagger: 0.1, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: b, start: 'top 70%' } });
       });
       gsap.from('.as-check', { x: -30, opacity: 0, stagger: 0.08, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.as-checks', start: 'top 85%' } });
@@ -139,6 +140,9 @@ function Technology() {
               ))}
             </ul>
             <p className="iq-note">{evibeIQ.note}</p>
+            <TLink className="btn btn--ghost iq-more" to="/iq">
+              <span className="btn-label">Explore EVIBE IQ →</span>
+            </TLink>
           </div>
           <div className="iq-radar" aria-hidden="true">
             <span />

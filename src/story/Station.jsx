@@ -308,7 +308,7 @@ export default function Station({ tier }) {
     <>
       <group ref={root}>
         {/* service area pad + bay marks */}
-        <mesh rotation-x={-Math.PI / 2} position={[CHARGER_X - 2.4, 0.006, -4]}>
+        <mesh rotation-x={-Math.PI / 2} position={[CHARGER_X - 2.4, 0.025, -4]}>
           <planeGeometry args={[10, 34]} />
           <meshStandardMaterial color="#141d2e" roughness={0.38} metalness={0.5} />
         </mesh>

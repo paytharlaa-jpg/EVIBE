@@ -6,7 +6,7 @@ import { franchise } from '../content';
 import PageShell from '../components/PageShell';
 import PageHero from '../components/PageHero';
 import Magnetic from '../components/Magnetic';
-import Contact from '../sections/Contact';
+import LeadForm from '../sections/LeadForm';
 import CtaBand from '../sections/CtaBand';
 import { TLink } from '../lib/transition';
 
@@ -135,10 +135,10 @@ function SitePlan({ tier }) {
       <Bay t="1" x={236} y={350} i={2} />
       <Bay t="1" x={292} y={350} car={false} i={3} />
       <Bay t="1" x={348} y={350} car={false} charger={false} i={4} />
-      <Box t="1" x={466} y={336} w={120} h={86} label="CAFÉ" i={5} />
+      <Box t="1" x={466} y={336} w={132} h={86} label="MINI CAFÉ" i={5} />
       <Seats t="1" cx={612} cy={352} n={3} i={6} />
       <text className="sp-el sp-mini" data-t="1" x="612" y="406" style={{ '--i': 6 }}>
-        WAITING
+        WAITING ROOM
       </text>
       <g className="sp-el" data-t="1" data-only="1" style={{ '--i': 7 }}>
         <rect x="180" y="160" width="470" height="140" rx="10" className="sp-expand" />
@@ -221,7 +221,7 @@ function TierBuilder({ onPropose }) {
   };
   const t = T[idx];
   return (
-    <section className={`fb ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-labelledby="fb-title">
+    <section className={`fb fb--${t.color} ${reduced ? 'is-static' : ''}`} ref={root} data-theme="dark" aria-labelledby="fb-title">
       {T.map((x, i) => (
         <span id={x.id} className="fb-anchor" key={x.id} style={{ top: `${i * 31 + 4}%` }} />
       ))}
@@ -229,7 +229,7 @@ function TierBuilder({ onPropose }) {
         <div className="wrap fb-grid">
           <div className="fb-info">
             <p className="eyebrow" id="fb-title">
-              Three formats · one ecosystem
+              {franchise.choose.kicker}
             </p>
             <div className="fb-rail" role="tablist" aria-label="Franchise formats">
               {T.map((x, i) => (
@@ -248,6 +248,7 @@ function TierBuilder({ onPropose }) {
                 ))}
               </h2>
               <p className="fb-tag">{t.tagline}</p>
+              <p className="fb-lead">{t.lead}</p>
               <ul className="fb-feats">
                 {t.features.map((f, i) => (
                   <li key={f} style={{ '--i': i }}>
@@ -258,7 +259,7 @@ function TierBuilder({ onPropose }) {
               </ul>
               <Magnetic>
                 <button type="button" className="btn btn--primary" onClick={() => onPropose(t.type)}>
-                  <span className="btn-label">Request Proposal</span>
+                  <span className="btn-label">{t.cta}</span>
                 </button>
               </Magnetic>
             </div>
@@ -292,11 +293,11 @@ function Compare({ onPropose }) {
     root,
   );
   const rows = [
-    ['Charging', ['Essential DC charging setup', 'Multiple DC charging points', 'High-capacity DC charging']],
-    ['Food & beverage', ['Compact café / refreshment outlet', 'Café and F&B options', 'Multiple café and F&B outlets']],
-    ['Seating', ['Customer waiting space', 'Indoor customer seating', 'Premium indoor / outdoor seating']],
-    ['Amenities', ['Compact EV charging destination', 'Customer amenities and office', 'Customer lounge and amenities']],
-    ['Signature element', ['Expandable site planning', 'Premium branded canopy', 'Technology and membership ecosystem']],
+    ['Charging', ['EV DC charging setup', 'Multiple DC charging points', 'High-capacity charging concept']],
+    ['Food & beverage', ['Combined mini café', 'Café and F&B options', 'Multiple café and F&B outlets']],
+    ['Seating', ['Customer waiting room', 'Indoor customer seating', 'Premium indoor and outdoor seating']],
+    ['Space & amenities', ['Approx. 10 ft × 10 ft combined space', 'Customer amenities and office space', 'Lounge and customer amenities']],
+    ['Signature element', ['Compact, practical site layout', 'Premium canopy and site identity', 'Integrated digital and membership experience']],
   ];
   return (
     <section className="fc section" ref={root} data-theme="dark" aria-labelledby="fc-title">
@@ -309,7 +310,7 @@ function Compare({ onPropose }) {
         </header>
         <div className="fc-grid">
           {T.map((t, ti) => (
-            <div className={`fc-col fc-col--${t.id}`} key={t.id}>
+            <div className={`fc-col fc-col--${t.id} fc-col--${t.color}`} key={t.id}>
               <div className="fc-top">
                 <span className="fc-format">{t.format}</span>
                 <h3>{t.name}</h3>
@@ -324,12 +325,11 @@ function Compare({ onPropose }) {
                 ))}
               </dl>
               <button type="button" className={`btn ${ti === 1 ? 'btn--primary' : 'btn--ghost'}`} onClick={() => onPropose(t.type)}>
-                <span className="btn-label">Request Proposal</span>
+                <span className="btn-label">{t.cta}</span>
               </button>
             </div>
           ))}
         </div>
-        <p className="fc-note">{franchise.note}</p>
         <div className="fc-land">
           <div>
             <p className="eyebrow">Landowner partnerships</p>
@@ -344,18 +344,114 @@ function Compare({ onPropose }) {
   );
 }
 
+// ── Partnership structures: FOFO · FOCO · COCO ────────────────
+function Models({ onPick }) {
+  const root = useRef(null);
+  const M = franchise.models;
+  const [on, setOn] = useState(0);
+  useGsap(
+    () => {
+      if (prefersReducedMotion()) return;
+      gsap.from('.fm-head > *', { y: 36, opacity: 0, stagger: 0.08, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: root.current, start: 'top 78%' } });
+      gsap.from('.fm-card', { y: 70, opacity: 0, stagger: 0.12, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.fm-grid', start: 'top 85%' } });
+    },
+    [],
+    root,
+  );
+  return (
+    <section className="fm section" ref={root} data-theme="deep" aria-labelledby="fm-title">
+      <div className="wrap">
+        <header className="fm-head">
+          <p className="eyebrow">{M.kicker}</p>
+          <h2 className="display-sm" id="fm-title">
+            {M.title}
+          </h2>
+          <p>{M.body}</p>
+        </header>
+        <div className="fm-grid">
+          {M.items.map((m, i) => (
+            <article key={m.id} className={`fm-card ${on === i ? 'is-on' : ''}`} onPointerEnter={() => setOn(i)} onFocus={() => setOn(i)} tabIndex={0}>
+              <p className="fm-code">{m.id}</p>
+              <h3>{m.name}</h3>
+              <p className="fm-body">{m.body}</p>
+              <dl className="fm-roles">
+                <div>
+                  <dt>Owns the assets</dt>
+                  <dd className={m.own === 'EVIBE' ? 'is-evibe' : ''}>{m.own === 'EVIBE' ? 'EVIBE' : 'You (franchise)'}</dd>
+                </div>
+                <div>
+                  <dt>Runs operations</dt>
+                  <dd className={m.run === 'EVIBE' ? 'is-evibe' : ''}>{m.run === 'EVIBE' ? 'EVIBE' : 'You (franchise)'}</dd>
+                </div>
+              </dl>
+              <button type="button" className="u-link fm-cta" onClick={() => onPick({ model: m.id })}>
+                Discuss {m.id} →
+              </button>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── From enquiry to launch ────────────────────────────────────
+function Path() {
+  const root = useRef(null);
+  const P = franchise.path;
+  useGsap(
+    () => {
+      if (prefersReducedMotion()) return;
+      gsap.from('.fpth-head > *', { y: 36, opacity: 0, stagger: 0.08, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: root.current, start: 'top 78%' } });
+      gsap.fromTo('.fpth-line i', { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.fpth-steps', start: 'top 80%', end: 'bottom 55%', scrub: 0.6 } });
+      gsap.from('.fpth-step', { y: 50, opacity: 0, stagger: 0.12, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.fpth-steps', start: 'top 85%' } });
+    },
+    [],
+    root,
+  );
+  return (
+    <section className="fpth section" ref={root} data-theme="dark" aria-labelledby="fpth-title">
+      <div className="wrap">
+        <header className="fpth-head">
+          <p className="eyebrow">{P.kicker}</p>
+          <h2 className="display-sm" id="fpth-title">
+            {P.title}
+          </h2>
+          <p>{P.body}</p>
+        </header>
+        <ol className="fpth-steps">
+          <span className="fpth-line" aria-hidden="true">
+            <i />
+          </span>
+          {P.steps.map((st, i) => (
+            <li className="fpth-step" key={st.title}>
+              <span className="fpth-no">0{i + 1}</span>
+              <h3>{st.title}</h3>
+              <p>{st.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+const FORMAT_OF = { 'EVIBE Starter Franchise': 'EVIBE Starter', 'EVIBE Signature Franchise': 'EVIBE Signature', 'EVIBE Flagship Franchise': 'EVIBE Flagship' };
+
 export default function FranchisePage() {
-  const [type, setType] = useState(T[1].type);
-  const propose = (t) => {
-    setType(t);
+  const [values, setValues] = useState({ format: 'EVIBE Signature' });
+  const go = (v) => {
+    setValues((x) => ({ ...x, ...v }));
     requestAnimationFrame(() => scrollToEl(document.getElementById('enquiry'), -40));
   };
+  const propose = (t) => go({ format: FORMAT_OF[t] || 'Need guidance' });
+  const F = franchise.form;
   return (
     <PageShell path="/franchise">
       <PageHero kicker="Franchise" title={franchise.title} sub={franchise.body} variant="rings" index="04">
         <div className="fr-chips">
           {T.map((t) => (
-            <a key={t.id} href={`#${t.id}`} className="chip" onClick={(e) => (e.preventDefault(), scrollToEl(document.getElementById(t.id)))}>
+            <a key={t.id} href={`#${t.id}`} className={`chip chip--${t.color}`} onClick={(e) => (e.preventDefault(), scrollToEl(document.getElementById(t.id)))}>
               {t.name}
             </a>
           ))}
@@ -364,19 +460,35 @@ export default function FranchisePage() {
       <Words />
       <TierBuilder onPropose={propose} />
       <Compare onPropose={propose} />
-      <div className="fr-enquiry">
-        <div className="wrap">
+      <Models onPick={go} />
+      <Path />
+      <div className="fr-enquiry" id="enquiry">
+        <div className="wrap fr-enquiry-grid">
           <header className="fr-enquiry-head">
-            <p className="eyebrow">Request a proposal</p>
-            <h2 className="display-sm">
-              Start your <em>EVIBE.</em>
-            </h2>
-            <p>Share a few details about yourself and the proposed site. The EVIBE team will take the discussion forward.</p>
+            <p className="eyebrow">{franchise.partner.kicker}</p>
+            <h2 className="display-sm">{franchise.partner.title}</h2>
+            <p>{franchise.partner.body}</p>
+            <p className="fr-form-title">{F.title}</p>
           </header>
-          <Contact bare cards={false} type={type} />
+          <LeadForm
+            id="fr"
+            subject="EVIBE franchise enquiry"
+            intro="Hi EVIBE, I would like to discuss a franchise opportunity."
+            values={values}
+            fields={[
+              { id: 'name', label: 'Your name *', required: true, auto: 'name' },
+              { id: 'phone', label: 'Phone number *', type: 'tel', required: true, auto: 'tel' },
+              { id: 'email', label: 'Email address', type: 'email', optional: true, auto: 'email' },
+              { id: 'city', label: 'Preferred city / location *', required: true, auto: 'address-level2' },
+              { id: 'format', label: 'Interested franchise format *', type: 'select', options: F.formats, required: true },
+              { id: 'model', label: 'Preferred partnership model', type: 'select', options: F.models },
+              { id: 'site', label: 'Site details / anything else', type: 'textarea', full: true, optional: true, placeholder: 'Land size, ownership, road frontage, timeline…' },
+            ]}
+          />
         </div>
+        <p className="wrap fr-note">{franchise.note}</p>
       </div>
-      <CtaBand title={['Build the future of', 'electric experiences.']} />
+      <CtaBand title={['Build the next', 'electric experience destination.']} />
     </PageShell>
   );
 }

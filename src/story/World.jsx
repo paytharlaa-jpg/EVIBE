@@ -53,9 +53,9 @@ function Sky() {
     for (let i = 0; i < n; i++) {
       const th = Math.random() * Math.PI * 2;
       const ph = Math.random() * 0.45 + 0.05;
-      pos[i * 3] = Math.cos(th) * Math.cos(ph) * 400;
-      pos[i * 3 + 1] = Math.sin(ph) * 400;
-      pos[i * 3 + 2] = Math.sin(th) * Math.cos(ph) * 400;
+      pos[i * 3] = Math.cos(th) * Math.cos(ph) * 250;
+      pos[i * 3 + 1] = Math.sin(ph) * 250;
+      pos[i * 3 + 2] = Math.sin(th) * Math.cos(ph) * 250;
     }
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
@@ -66,7 +66,7 @@ function Sky() {
   return (
     <group ref={ref}>
       <mesh material={mat}>
-        <sphereGeometry args={[450, 32, 16]} />
+        <sphereGeometry args={[280, 32, 16]} />
       </mesh>
       <points geometry={stars}>
         <pointsMaterial size={1.2} sizeAttenuation={false} color="#bfe9ff" transparent opacity={0.7} fog={false} />
@@ -93,7 +93,7 @@ function Repeaters({ tier }) {
     const travel = worldZ(S.p);
     for (let i = 0; i < N_DASH; i++) {
       const z = wrapZ(i * 10, travel, N_DASH * 10);
-      dummy.position.set(3.75, 0.012, z);
+      dummy.position.set(3.75, 0.03, z);
       dummy.rotation.set(-Math.PI / 2, 0, 0);
       dummy.scale.set(1, 1, 1);
       dummy.updateMatrix();
@@ -113,11 +113,11 @@ function Repeaters({ tier }) {
       dummy.position.set(-0.6, 8.35, z);
       dummy.updateMatrix();
       lamps.current.setMatrixAt(i, dummy.matrix);
-      dummy.position.set(1.6, 0.02, z);
+      dummy.position.set(1.6, 0.035, z);
       dummy.rotation.set(-Math.PI / 2, 0, 0);
       dummy.updateMatrix();
       pools.current.setMatrixAt(i * 2, dummy.matrix);
-      dummy.position.set(-2.8, 0.02, z);
+      dummy.position.set(-2.8, 0.035, z);
       dummy.updateMatrix();
       pools.current.setMatrixAt(i * 2 + 1, dummy.matrix);
     }
@@ -231,16 +231,16 @@ export default function World({ tier }) {
         )}
       </mesh>
       {/* shoulders and verge */}
-      <mesh rotation-x={-Math.PI / 2} position={[0, -0.02, -220]}>
+      <mesh rotation-x={-Math.PI / 2} position={[0, -0.05, -220]}>
         <planeGeometry args={[600, 560]} />
         <meshStandardMaterial color="#050a14" roughness={1} />
       </mesh>
       {/* edge lines + median */}
-      <mesh rotation-x={-Math.PI / 2} position={[7.55, 0.011, -220]}>
+      <mesh rotation-x={-Math.PI / 2} position={[7.55, 0.028, -220]}>
         <planeGeometry args={[0.14, 560]} />
         <meshBasicMaterial color="#d9e1ea" />
       </mesh>
-      <mesh rotation-x={-Math.PI / 2} position={[0.15, 0.011, -220]}>
+      <mesh rotation-x={-Math.PI / 2} position={[0.15, 0.028, -220]}>
         <planeGeometry args={[0.14, 560]} />
         <meshBasicMaterial color="#e8b84a" />
       </mesh>

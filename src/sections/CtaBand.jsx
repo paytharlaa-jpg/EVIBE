@@ -14,8 +14,8 @@ export default function CtaBand({ title = ['Let’s build the', 'electric experi
     () => {
       if (prefersReducedMotion()) return;
       gsap.fromTo('.cb-line .line-in', { yPercent: 115 }, { yPercent: 0, duration: 1.4, stagger: 0.12, ease: 'expo.out', scrollTrigger: { trigger: root.current, start: 'top 70%' } });
-      gsap.fromTo('.cb-meter span', { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 80%', end: 'top 20%', scrub: true } });
-      gsap.fromTo('.cb-bg', { xPercent: 0 }, { xPercent: -25, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo('.cb-meter span', { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 80%', end: 'top 20%', scrub: 0.9 } });
+      gsap.fromTo('.cb-bg', { xPercent: 0 }, { xPercent: -25, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: 0.9 } });
       gsap.from('.cb-actions > *', { y: 40, opacity: 0, stagger: 0.08, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.cb-actions', start: 'top 90%' } });
     },
     [],

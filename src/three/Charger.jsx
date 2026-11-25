@@ -341,7 +341,7 @@ export default function ChargerModel({ tier = 2, chargeRef, glowRef, dynamicCabl
         <meshBasicMaterial map={shadowTex} transparent depthWrite={false} />
       </mesh>
       {ring && (
-        <mesh ref={parts.ring} rotation-x={-Math.PI / 2} position-y={0.004} material={mats.ring}>
+        <mesh ref={parts.ring} rotation-x={-Math.PI / 2} position-y={0.02} material={mats.ring}>
           <ringGeometry args={[0.78, 0.8, 96]} />
         </mesh>
       )}
