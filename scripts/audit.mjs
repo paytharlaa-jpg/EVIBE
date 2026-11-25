@@ -13,7 +13,7 @@ for (const path of ['/', '/about', '/services', '/gallery', '/testimonials', '/f
   page.on('requestfailed', (r) => log.push('REQFAIL ' + r.url()));
   page.on('response', (r) => r.status() >= 400 && log.push('HTTP ' + r.status() + ' ' + r.url()));
   await page.goto('http://localhost:5173' + path, { waitUntil: 'networkidle' });
-  await page.waitForSelector('.ld2', { state: 'detached', timeout: 60000 });
+await page.waitForSelector('.ld2', { state: 'detached', timeout: 60000 });
   await page.waitForTimeout(1500);
   // scroll through the whole page in steps so every trigger fires
   const H = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);

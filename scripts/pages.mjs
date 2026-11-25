@@ -10,7 +10,7 @@ for (const path of ['/about', '/services', '/gallery', '/testimonials', '/faq', 
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errs.push(path + ' ' + String(e)));
   await page.goto('http://localhost:5173' + path, { waitUntil: 'networkidle' });
-  await page.waitForSelector('.ld2', { state: 'detached', timeout: 40000 });
+await page.waitForSelector('.ld2', { state: 'detached', timeout: 40000 });
   await page.waitForTimeout(2600);
   const name = path.slice(1);
   await page.screenshot({ path: `${out}/${mode}-${name}-0.png` });

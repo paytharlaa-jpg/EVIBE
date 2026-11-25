@@ -55,7 +55,13 @@ It creates AVIF + WebP at 800 and 1600 px in `public/img/`.
 - `src/services/`: the Services page film "Three drivers, one network" (home garage with a wall
   box → workplace car park → highway DC hub). `timeline.js` holds the camera path, charge levels and
   chapter timing; `ServicesScene.jsx` the three 3D sets; `ServicesFilm.jsx` the text, counters and rail.
-- `src/components/Loader.jsx`: the cinematic logo title sequence.
+- `src/components/Loader.jsx`: the cinematic logo trailer, sound on by default. A short still
+  pre-roll waits (max 4 s) for the 3D to be prepared so the trailer never stutters. Browsers hold
+  audio until the first click/tap/key; the corner button shows "Tap for sound" until then and
+  remembers if a visitor turns sound off.
+- `src/lib/sfx.js`: Hollywood-trailer sound design (riser with suck-back, distorted BRAAM with sub
+  drop, whoosh-hits with taiko thuds, metallic ticks, power surge, heartbeat tension drone,
+  reverse swell + final hit), synthesised live with the Web Audio API. No audio files.
 - `src/lib/transition.jsx`: page-to-page curtain (the three logo blades).
 
 - `src/three/Charger.jsx`: the original EVIBE charging pillar, modelled in code. The extruded logo

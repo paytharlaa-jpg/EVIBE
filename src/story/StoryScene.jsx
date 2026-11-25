@@ -4,6 +4,7 @@ import { Environment, Lightformer, PerformanceMonitor } from '@react-three/drei'
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { S } from './state';
+import { useIntroMoving } from '../lib/intro';
 import { camera as cameraAt, carPose, worldZ, battery, charging, plug, lowAlarm, speedKmh, BAY_X, STATION_Z, LANE_L } from './timeline';
 import World from './World';
 import Station from './Station';
@@ -132,20 +133,38 @@ function Lights({ tier }) {
   );
 }
 
+// Compile every shader up front, off the main thread where the browser supports
+// it (KHR_parallel_shader_compile), so the first real frame doesn't stall.
 function ReadySignal({ onReady }) {
+  const { gl, scene, camera } = useThree();
+  const moving = useIntroMoving();
   useEffect(() => {
-    onReady?.();
-  }, [onReady]);
+    if (moving) return; // compile only while the intro stands still
+    let live = true;
+    const done = () => live && onReady?.();
+    if (gl.compileAsync) gl.compileAsync(scene, camera).then(done, done);
+    else done();
+    return () => {
+      live = false;
+    };
+  }, [gl, scene, camera, onReady, moving]);
   return null;
 }
 
 export default function StoryScene({ tier, active, onReady }) {
+  const introMoving = useIntroMoving();
+  // Mount the heavy scene only while the intro is still (gate or logo hold);
+  // once mounted it stays.
+  const [mountScene, setMountScene] = useState(false);
+  useEffect(() => {
+    if (!introMoving) setMountScene(true);
+  }, [introMoving]);
   const maxDpr = tier === 3 ? 1.6 : tier === 2 ? 1.35 : 1;
   const [dpr, setDpr] = useState(maxDpr);
   return (
     <Canvas
       className="story-canvas"
-      frameloop={active ? 'always' : 'demand'}
+      frameloop={active ? 'always' : introMoving ? 'never' : 'demand'}
       dpr={dpr}
       gl={{ antialias: tier < 2, powerPreference: 'high-performance', stencil: false }}
       camera={{ fov: S.mobile ? 58 : 40, near: 0.1, far: 700, position: [0, 3, 10] }}
@@ -159,14 +178,14 @@ export default function StoryScene({ tier, active, onReady }) {
       <PerformanceMonitor onDecline={() => setDpr((d) => Math.max(0.8, d - 0.2))} onIncline={() => setDpr((d) => Math.min(maxDpr, d + 0.2))} />
       <Director />
       <Lights tier={tier} />
-      <Suspense fallback={null}>
+      {mountScene && <Suspense fallback={null}>
         <World tier={tier} />
         <Station tier={tier} />
         <Hero />
         <ParkedVan />
         <Traffic />
         <ReadySignal onReady={onReady} />
-      </Suspense>
+      </Suspense>}
       {tier >= 2 && (
         <EffectComposer multisampling={0} disableNormalPass>
           <Bloom intensity={1.25} luminanceThreshold={0.85} luminanceSmoothing={0.2} mipmapBlur radius={0.72} />
