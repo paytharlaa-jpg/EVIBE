@@ -2540,3 +2540,38 @@ html.reduce-motion .eco-core {
 .svf-rail-item .svf-rail-bar span { color: var(--tc); background-color: var(--tc); }
 .svf-rail-item .svf-rail-no { background: none; }
 .svf-rail-item.is-active { background: color-mix(in srgb, var(--tc) 16%, transparent); }
+
+/* ── Touch devices (iPhone / Android) ───────────────────────── */
+html.scroll-lock,
+html.scroll-lock body {
+  overflow: hidden;
+}
+@media (hover: none), (pointer: coarse) {
+  /* Safari's toolbar collapses while scrolling; the large-viewport unit keeps
+     the pinned 3D stages covering the whole screen at a fixed size, so the
+     canvas never resizes and no strip of the page shows below it. */
+  .story-stage,
+  .svf-stage,
+  .ctp-sticky {
+    height: 100vh;
+    height: 100lvh;
+  }
+  .story-canvas,
+  .sv-canvas {
+    touch-action: pan-y;
+  }
+  /* keep bottom UI above Safari's bottom toolbar */
+  .sc-hud {
+    bottom: calc(100lvh - 100svh + max(14px, env(safe-area-inset-bottom))) !important;
+  }
+  .svf-rail {
+    bottom: calc(100lvh - 100svh + max(14px, env(safe-area-inset-bottom))) !important;
+  }
+  /* per-frame clip-path text reveals repaint text on iOS: fade only */
+  .svf-line {
+    clip-path: none !important;
+  }
+  html {
+    transition: none !important;
+  }
+}

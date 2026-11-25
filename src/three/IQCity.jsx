@@ -282,7 +282,7 @@ export default function IQCity({ tier, progressRef }) {
   const cards = [useRef(), useRef(), useRef(), useRef(), useRef()];
   return (
     <div className="iqc-wrap">
-    <Canvas dpr={[1, tier >= 3 ? 1.6 : 1.25]} camera={{ position: [0, 13, 16], fov: 36 }} gl={{ alpha: true, antialias: tier < 3 }}>
+    <Canvas resize={{ scroll: false, debounce: { scroll: 0, resize: 250 } }} dpr={[1, tier >= 3 ? 1.6 : 1.25]} camera={{ position: [0, 13, 16], fov: 36 }} gl={{ alpha: true, antialias: tier < 3 || isTouch() }}>
       <fog attach="fog" args={['#050f22', 14, 30]} />
       <ambientLight intensity={0.35} />
       <hemisphereLight args={['#2a6cff', '#020814', 0.8]} />

@@ -16,7 +16,8 @@ function Director() {
   const first = useRef(true);
   useFrame((state, dt) => {
     const d = Math.min(dt, 0.35);
-    SS.p = first.current ? SS.target : damp(SS.p, SS.target, 2.4, d);
+    const gap = Math.abs(SS.target - SS.p);
+    SS.p = first.current ? SS.target : damp(SS.p, SS.target, 2.4 + Math.max(0, gap - 0.06) * 30, Math.min(d, 0.1));
     const { pos, look: l } = camAt(SS.p, SS.mobile);
     if (first.current) {
       cam.position.set(...pos);
@@ -41,14 +42,16 @@ function Ready({ onReady }) {
 export default function ServicesScene({ tier, active, onReady }) {
   const maxDpr = tier === 3 ? 1.6 : tier === 2 ? 1.35 : 1;
   // Fixed pixel ratio: changing it mid-scroll resizes the canvas and flashes a frame.
-  const [dpr] = useState(() => Math.min(maxDpr, window.devicePixelRatio || 1, isTouch() ? 1.25 : maxDpr));
+  // Phones: sharper (1.5×) with hardware anti-aliasing, because thin lines shimmer badly without it.
+  const [dpr] = useState(() => (isTouch() ? Math.min(1.5, window.devicePixelRatio || 1) : Math.min(maxDpr, window.devicePixelRatio || 1)));
   const [post] = useState(() => tier >= 2 && !isTouch());
   return (
     <Canvas
       className="sv-canvas"
+      resize={{ scroll: false, debounce: { scroll: 0, resize: 250 } }}
       frameloop={active ? 'always' : 'demand'}
       dpr={dpr}
-      gl={{ antialias: tier < 2, powerPreference: 'high-performance', stencil: false }}
+      gl={{ antialias: tier < 2 || isTouch(), powerPreference: 'high-performance', stencil: false }}
       camera={{ fov: SS.mobile ? 56 : 38, near: 0.2, far: 140, position: [4, 2, 10] }}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;

@@ -55,7 +55,7 @@ function Charging({ tier, progressRef }) {
 
 export default function ContactCharger({ tier, progressRef }) {
   return (
-    <Canvas dpr={[1, tier >= 3 ? 1.75 : 1.4]} camera={{ position: [0, 0.2, 6.6], fov: 34 }} gl={{ alpha: true, antialias: true }}>
+    <Canvas resize={{ scroll: false, debounce: { scroll: 0, resize: 250 } }} dpr={[1, tier >= 3 ? 1.75 : 1.4]} camera={{ position: [0, 0.2, 6.6], fov: 34 }} gl={{ alpha: true, antialias: true }}>
       <ambientLight intensity={0.4} />
       <directionalLight position={[-4, 6, 5]} intensity={2.2} />
       <directionalLight position={[5, 2, -4]} intensity={2.6} color="#12DDC6" />

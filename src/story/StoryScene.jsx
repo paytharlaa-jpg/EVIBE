@@ -20,13 +20,15 @@ function Director() {
   const smoothLook = useMemo(() => new THREE.Vector3(), []);
   const first = useMemo(() => ({ v: true }), []);
   useFrame((state, dt) => {
-    S.p = first.v ? S.target : damp(S.p, S.target, 2.5, Math.min(dt, 0.35));
-    if (Math.abs(S.target - S.p) > 0.25) S.p = S.target - Math.sign(S.target - S.p) * 0.25; // never lag a whole chapter
+    // ease towards the scroll position; catch up faster (never jump) after a big flick
+    const gap = Math.abs(S.target - S.p);
+    S.p = first.v ? S.target : damp(S.p, S.target, 2.5 + Math.max(0, gap - 0.06) * 30, Math.min(dt, 0.1));
     const car = carPose(S.p);
     const { pos, look: l } = cameraAt(S.p, car, S.mobile);
     // a little handheld drift while cruising, stillness while charging
     const t = state.clock.elapsedTime;
-    const shake = (S.p < 0.5 ? 0.05 : 0.015) * (1 - charging(S.p));
+    // a touch of handheld drift on desktop only; on phones it reads as screen shake
+    const shake = S.mobile || isTouch() ? 0 : (S.p < 0.5 ? 0.05 : 0.015) * (1 - charging(S.p));
     look.set(l[0], l[1], l[2]);
     if (first.v) {
       cam.position.set(pos[0], pos[1], pos[2]);
@@ -162,14 +164,16 @@ export default function StoryScene({ tier, active, onReady }) {
   }, [introMoving]);
   const maxDpr = tier === 3 ? 1.6 : tier === 2 ? 1.35 : 1;
   // Fixed pixel ratio: changing it mid-scroll resizes the canvas and flashes a frame.
-  const [dpr] = useState(() => Math.min(maxDpr, window.devicePixelRatio || 1, isTouch() ? 1.25 : maxDpr));
+  // Phones: sharper (1.5×) with hardware anti-aliasing, because thin lines shimmer badly without it.
+  const [dpr] = useState(() => (isTouch() ? Math.min(1.5, window.devicePixelRatio || 1) : Math.min(maxDpr, window.devicePixelRatio || 1)));
   const [post] = useState(() => tier >= 2 && !isTouch());
   return (
     <Canvas
       className="story-canvas"
+      resize={{ scroll: false, debounce: { scroll: 0, resize: 250 } }}
       frameloop={active ? 'always' : introMoving ? 'never' : 'demand'}
       dpr={dpr}
-      gl={{ antialias: tier < 2, powerPreference: 'high-performance', stencil: false }}
+      gl={{ antialias: tier < 2 || isTouch(), powerPreference: 'high-performance', stencil: false }}
       camera={{ fov: S.mobile ? 58 : 40, near: 0.2, far: 300, position: [0, 3, 10] }}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
