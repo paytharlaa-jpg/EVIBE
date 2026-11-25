@@ -283,7 +283,8 @@
 }
 .sch {
   display: inline-block;
-  --k: clamp(0, calc(var(--in) * 1.7 - var(--i) * 0.035), 1);
+  /* reaches 1 for every letter (long lines too) by the time --in = 1 */
+  --k: clamp(0, calc(var(--in) * 2.6 - var(--i) * 0.035), 1);
   opacity: var(--k);
   transform: translateY(calc((1 - var(--k)) * 0.9em)) rotate(calc((1 - var(--k)) * 8deg));
   filter: blur(calc((1 - var(--k)) * 6px));
@@ -2573,5 +2574,16 @@ html.scroll-lock body {
   }
   html {
     transition: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  /* per-letter blur is costly on phones and smears text over the 3D canvas */
+  .sch {
+    filter: none !important;
+  }
+  /* thinner cinematic bars on small screens */
+  .letterbox {
+    height: 3.5vh;
   }
 }
