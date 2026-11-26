@@ -791,11 +791,15 @@
   background: #fff;
   color: var(--navy);
   box-shadow: 0 30px 60px rgba(7, 27, 60, 0.12), 0 2px 0 rgba(7, 27, 60, 0.04);
-  transform: rotate(calc((var(--i) - 1.5) * 1.4deg)) translateY(calc(var(--i) * 10px));
-  transition: transform 0.6s var(--ease-out), box-shadow 0.6s;
+  /* resting fan + hover use the individual rotate/translate properties;
+     GSAP's entrance uses transform, so the two never fight */
+  rotate: calc((var(--i) - 1.5) * 1.4deg);
+  translate: 0 calc(var(--i) * 10px);
+  transition: rotate 0.6s var(--ease-out), translate 0.6s var(--ease-out), box-shadow 0.6s;
 }
 .iqo-doc:hover {
-  transform: translateY(-12px) rotate(0);
+  rotate: 0deg;
+  translate: 0 -12px;
   box-shadow: 0 40px 80px rgba(7, 27, 60, 0.2);
 }
 .iqo-doc-top {
@@ -969,7 +973,8 @@ html.reduce-motion .ps-wire {
     grid-template-columns: repeat(2, 1fr);
   }
   .iqo-doc {
-    transform: none;
+    rotate: 0deg;
+    translate: none;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -1040,7 +1045,8 @@ html.reduce-motion .ps-wire {
   }
   .iqo-doc {
     min-height: 230px;
-    transform: none;
+    rotate: 0deg;
+    translate: none;
   }
   .iqo-private {
     flex-direction: column;

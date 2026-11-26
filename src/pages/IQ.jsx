@@ -464,6 +464,7 @@ function Outputs() {
         stagger: 0.12,
         duration: 1.4,
         ease: 'expo.out',
+        clearProps: 'transform,opacity',
         scrollTrigger: { trigger: '.iqo-docs', start: 'top 82%' },
       });
     },
