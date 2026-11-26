@@ -7,7 +7,7 @@ const page = await ctx.newPage();
 page.on('pageerror', (e) => console.log('ERR', e.message));
 await page.goto('http://localhost:5173' + path, { waitUntil: 'networkidle' });
 await page.waitForSelector('.ld2', { state: 'detached', timeout: 60000 });
-await page.evaluate((y) => window.scrollTo(0, +y), y);
+await page.evaluate((y) => { const el = /^[.#]/.test(y) ? document.querySelector(y) : null; window.scrollTo(0, el ? el.getBoundingClientRect().top + scrollY : +y); }, y);
 await page.waitForTimeout(5000);
 await page.screenshot({ path: out });
 await browser.close();

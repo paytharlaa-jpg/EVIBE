@@ -7,6 +7,7 @@ import { isTouch } from '../lib/device';
 import { damp } from './parts';
 import Cafe from './Cafe';
 import Formats from './Formats';
+import LightPool, { Warmup } from './lights';
 import { SS } from './state';
 import { camera as camAt } from './timeline';
 
@@ -60,6 +61,7 @@ export default function ServicesScene({ tier, active, onReady }) {
       }}
     >
       <Director />
+      <LightPool />
       <hemisphereLight args={['#2a4f8f', '#02060f', 0.5]} />
       <directionalLight position={[-20, 30, 20]} intensity={0.5} color="#9ec5ff" />
       <Environment resolution={128} frames={1}>
@@ -71,6 +73,7 @@ export default function ServicesScene({ tier, active, onReady }) {
       <Suspense fallback={null}>
         <Cafe tier={tier} />
         <Formats tier={tier} />
+        <Warmup />
         <Ready onReady={onReady} />
       </Suspense>
       {post && (

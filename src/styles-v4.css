@@ -1232,3 +1232,169 @@ html.reduce-motion .sp-el {
 @media (max-width: 560px) {
   .fpth-steps { grid-template-columns: 1fr; }
 }
+
+/* EVIBE CHARGE · DC design */
+.dc-head { max-width: 780px; margin-top: clamp(70px, 11vh, 120px); }
+.dc-head--intro { margin-top: 0; }
+.dc-head > p:not(.eyebrow) { margin-top: 16px; color: var(--fg-muted); line-height: 1.7; }
+.dc-h3 {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+.dc-caps {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.dc-cap {
+  padding: 26px 24px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.dc-cap .dc-kw {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, var(--teal), var(--blue-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dc-cap .dc-kw small {
+  margin-left: 6px;
+  font-size: 0.36em;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  -webkit-text-fill-color: var(--fg-muted);
+}
+.dc-cap-bar {
+  display: block;
+  height: 4px;
+  margin: 18px 0 20px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.dc-cap-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--blue-bright));
+  transform-origin: 0 50%;
+}
+.dc-cap h4,
+.dc-factor h4,
+.dc-step h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.12rem;
+}
+.dc-cap p,
+.dc-factor p,
+.dc-step p {
+  margin-top: 8px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+.dc-factors {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.dc-factor {
+  padding: 26px 24px;
+  background: var(--bg);
+}
+.dc-no {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--teal);
+}
+.dc-steps {
+  position: relative;
+  list-style: none;
+  margin: 44px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+.dc-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 21px;
+  height: 2px;
+  background: var(--line);
+}
+.dc-line i {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--teal), var(--blue-bright));
+  transform-origin: 0 50%;
+}
+.dc-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(18, 221, 198, 0.6);
+  background: var(--bg);
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+.dc-principle {
+  margin-top: clamp(60px, 10vh, 100px);
+  padding: clamp(30px, 5vw, 56px);
+  border-radius: 26px;
+  border: 1px solid rgba(18, 221, 198, 0.3);
+  background: radial-gradient(circle at 85% 10%, rgba(18, 221, 198, 0.2), transparent 55%), linear-gradient(120deg, #05245f, #071b3c);
+}
+.dc-principle-title {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.dc-principle .dc-principle-title + p { margin-top: 14px; color: rgba(230, 233, 238, 0.78); max-width: 640px; line-height: 1.7; }
+.dc-note {
+  margin-top: 26px;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+@media (max-width: 1024px) {
+  .dc-caps { grid-template-columns: repeat(2, 1fr); }
+  .dc-factors { grid-template-columns: repeat(2, 1fr); }
+  .dc-steps { grid-template-columns: repeat(2, 1fr); row-gap: 34px; }
+  .dc-line { display: none; }
+}
+@media (max-width: 600px) {
+  .dc-caps,
+  .dc-factors,
+  .dc-steps { grid-template-columns: 1fr; }
+}

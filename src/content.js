@@ -60,7 +60,7 @@ export const ecosystem = {
 
 // Four pillars of the ecosystem
 export const pillars = [
-  { no: '01', tag: 'Hardware', name: 'EVIBE CHARGE', body: 'EVIBE-branded DC fast-charging solutions sourced and configured with selected manufacturing partners.' },
+  { no: '01', tag: 'Hardware', name: 'EVIBE CHARGE', body: 'EVIBE-branded DC fast-charging solutions, from 60 to 240 kW, right-sized for each location through a demand-led site study.' },
   { no: '02', tag: 'Software', name: 'EVIBE DIGITAL', body: 'EVIBE-powered charging management, charger monitoring and customer-facing digital experiences, subject to verified platform capabilities.' },
   { no: '03', tag: 'Deployment', name: 'EVIBE DEPLOY', body: 'Site assessment, feasibility, planning, vendor coordination, deployment oversight and commissioning support.' },
   { no: '04', tag: 'Operations', name: 'EVIBE CARE', body: 'Remote monitoring, technical assistance, maintenance coordination, troubleshooting and customer support.' },
@@ -203,6 +203,55 @@ export const iq = {
     roles: ['Landowner', 'Franchise investor', 'Business owner', 'Fleet operator', 'Other'],
     status: ['Owned', 'Available for lease', 'Looking for property', 'Not yet identified'],
   },
+};
+
+// ── EVIBE CHARGE · DC design (Solutions page) ────────────────
+export const dc = {
+  kicker: 'EVIBE CHARGE · DC fast charging solutions',
+  title: 'The right charging capacity for the right location.',
+  body: 'Every location has a different customer profile, traffic pattern, energy requirement and grid constraint. EVIBE follows a demand-led approach to determine the appropriate DC charger configuration, rather than defaulting to the highest available capacity.',
+  options: {
+    kicker: 'DC capacity options',
+    title: 'Four capacity options. One evidence-led decision.',
+    body: 'EVIBE considers DC charger configurations across these capacity classes. The final recommendation depends on the site study, equipment specifications and available electrical supply.',
+    items: [
+      { kw: 60, title: 'Moderate-demand locations', body: 'Considered where the expected charging load, vehicle mix and site economics support this capacity.' },
+      { kw: 120, title: 'Medium-to-higher demand', body: 'Considered where stronger throughput is justified by expected sessions, energy delivery and grid readiness.' },
+      { kw: 180, title: 'High-demand locations', body: 'Considered where forecast demand and electrical infrastructure can make the additional capacity viable.' },
+      { kw: 240, title: 'High-throughput locations', body: 'Considered selectively for sites with evidence of sustained demand and adequate power infrastructure.' },
+    ],
+  },
+  assess: {
+    kicker: 'Scientific site assessment',
+    title: 'We study demand before recommending capacity.',
+    body: 'Charger selection is based on multiple measurable inputs. No single factor, including road traffic or charger nameplate rating, is enough on its own.',
+    items: [
+      { title: 'Traffic and accessibility', body: 'Vehicle movement, road access, entry and exit convenience, visibility and likely stop behaviour.' },
+      { title: 'Local EV demand', body: 'EV population, vehicle categories, fleet activity, nearby destinations and expected charging use.' },
+      { title: 'Charging behaviour', body: 'Expected sessions, energy per session, arrival patterns, dwell time, peak periods and simultaneous demand.' },
+      { title: 'Competitive landscape', body: 'Nearby charging points, their capacity, availability, pricing and the service gap the proposed site may address.' },
+      { title: 'Power infrastructure', body: 'Sanctioned load, supply reliability, transformer and HT/LT requirements, electrical losses and utility feasibility.' },
+      { title: 'Commercial viability', body: 'Equipment and infrastructure cost, electricity tariff, demand charges, operating costs, expected utilization and sensitivity scenarios.' },
+    ],
+  },
+  process: {
+    kicker: 'EVIBE evaluation process',
+    title: 'A structured process from site data to charger recommendation.',
+    body: 'The study should produce a documented recommendation with assumptions, constraints and alternatives.',
+    steps: [
+      { title: 'Collect data', body: 'Site details, traffic observations, local EV indicators, competitor mapping and utility information.' },
+      { title: 'Forecast demand', body: 'Estimate sessions, kWh demand, arrival peaks, dwell time and concurrent charging needs.' },
+      { title: 'Model configurations', body: 'Compare 60, 120, 180 and 240 kW options, charger count and power-sharing behaviour.' },
+      { title: 'Test feasibility', body: 'Check grid capacity, electrical scope, site layout, capital cost and operating economics.' },
+      { title: 'Recommend & phase', body: 'Recommend a suitable initial configuration and identify evidence-based expansion triggers.' },
+    ],
+  },
+  principle: {
+    kicker: 'EVIBE principle',
+    title: 'Right-sized today. Ready to scale tomorrow.',
+    body: 'We aim to avoid unnecessary upfront capacity while preserving a practical path to expansion as local demand grows.',
+  },
+  note: 'These are capacity categories, not a recommendation for any particular site. Actual charger output may be limited by vehicle acceptance, connector ratings, battery state, temperature, charger design and dynamic power sharing. A 240 kW unit does not guarantee every connected vehicle receives 240 kW simultaneously. Final configuration requires site-specific demand analysis, charger technical review, utility confirmation and electrical engineering approval. Forecasts are estimates, not guarantees of utilization or returns.',
 };
 
 // ── Solutions (services) ──────────────────────────────────────

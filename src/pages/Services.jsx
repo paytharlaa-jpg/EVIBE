@@ -12,6 +12,7 @@ import ProcessGraphic from '../sections/ProcessGraphic';
 import FAQ from '../sections/FAQ';
 import { TLink } from '../lib/transition';
 import CtaBand from '../sections/CtaBand';
+import DcDesign from '../sections/DcDesign';
 
 // Full service detail: sticky index on the left, each service a scene with a
 // masked image, a giant outlined number and its inclusions.
@@ -96,6 +97,7 @@ export default function ServicesPage() {
       />
       <ServicesFilm tier={detectTier()} />
       <ServiceDetail />
+      <DcDesign />
       <ProcessGraphic note />
       <FAQ limit={4} />
       <CtaBand title={['Not sure which fits?', 'Discuss your project.']} />

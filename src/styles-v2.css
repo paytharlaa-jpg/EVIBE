@@ -2232,7 +2232,8 @@ html.reduce-motion .gate-eq i {
   color: var(--fg-muted);
 }
 .eco-wheel {
-  --S: min(860px, 92vw);
+  /* fits the screen: never taller than the viewport, smaller overall */
+  --S: min(700px, 84vw, calc(100svh - 140px));
   --R: calc(var(--S) * 0.4);
   --node: calc(var(--S) * 0.245);
   --spin: 140s;
@@ -2436,7 +2437,7 @@ html.reduce-motion .gate-eq i {
 }
 @media (max-width: 760px) {
   .eco-wheel {
-    --S: 94vw;
+    --S: 86vw;
     --node: calc(var(--S) * 0.22);
   }
   .eco-node-in p,

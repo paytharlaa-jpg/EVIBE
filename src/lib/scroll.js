@@ -9,26 +9,40 @@ ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
 
 let lenis = null;
 
+let norm = null;
+
 export function startSmoothScroll() {
-  // Phones/tablets (iOS Safari especially) keep their own native momentum
-  // scrolling: a JS smooth-scroller there fights the browser and makes the
-  // pinned 3D films shake.
-  if (lenis || prefersReducedMotion() || isTouch()) return null;
+  if (lenis || norm || prefersReducedMotion()) return null;
+  // Keep lag smoothing: a long main-thread stall (3D shader compile) must not
+  // fast-forward the intro animations to their end.
+  gsap.ticker.lagSmoothing(500, 50);
+  if (isTouch()) {
+    // iOS/Android: scrolling runs on its own thread, so the WebGL films and
+    // their text drew a frame behind the page ("shake"). normalizeScroll keeps
+    // scroll and rendering in sync and stops the address bar from jumping.
+    norm = ScrollTrigger.normalizeScroll({ allowNestedScroll: true, lockAxis: false, momentum: (self) => Math.min(3, self.velocityY / 1000), type: 'touch,wheel' });
+    return null;
+  }
   // Butter: a low lerp glides every wheel step; wheel distance slightly reduced so
   // the scroll-driven films do not race. Touch keeps native momentum (no hijack).
   lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: false, touchMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
-  // Keep lag smoothing: a long main-thread stall (3D shader compile) must not
-  // fast-forward the intro animations to their end.
-  gsap.ticker.lagSmoothing(500, 50);
   return lenis;
 }
 
 export const getLenis = () => lenis;
 
-// Without Lenis (touch devices) lock scrolling with overflow instead.
-export const stopScroll = () => (lenis ? lenis.stop() : document.documentElement.classList.add('scroll-lock'));
-export const resumeScroll = () => (lenis ? lenis.start() : document.documentElement.classList.remove('scroll-lock'));
+// Touch devices (no Lenis): pause scroll normalisation and lock with overflow.
+export const stopScroll = () => {
+  if (lenis) return lenis.stop();
+  norm?.disable();
+  document.documentElement.classList.add('scroll-lock');
+};
+export const resumeScroll = () => {
+  if (lenis) return lenis.start();
+  document.documentElement.classList.remove('scroll-lock');
+  norm?.enable();
+};
 
 export { gsap, ScrollTrigger };

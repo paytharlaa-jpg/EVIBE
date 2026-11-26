@@ -87,7 +87,6 @@ function Canopy({ cx, w, color, sign, h = 4.3, d = 6.6, pillars = 2 }) {
           </mesh>
         </group>
       ))}
-      <pointLight position={[0, h - 0.8, 0.4]} intensity={30} distance={16} color="#e9fbff" />
     </group>
   );
 }
@@ -206,7 +205,6 @@ function Outlet({ x, z, w = 4, label, items, color }) {
         <boxGeometry args={[w, 0.05, 0.3]} />
         <meshStandardMaterial color="#3a2a1d" />
       </mesh>
-      <pointLight position={[0, 2.6, 0.4]} intensity={14} distance={6} decay={1.6} color={WARM} />
     </group>
   );
 }
@@ -396,8 +394,6 @@ function Signature({ tier }) {
       <Prop get={get} name="potted_plant_02" position={[X - 9.2, 0, -6.3]} />
       <Prop get={get} name="planter_box_01" position={[X - 4.6, 0, -3.8]} />
       <Prop get={get} name="planter_box_01" position={[X + 4.6, 0, -3.8]} />
-      <pointLight position={[X - 3, 2.8, -9]} intensity={22} distance={9} decay={1.6} color={WARM} />
-      <pointLight position={[X + 6.5, 2.6, -10.5]} intensity={16} distance={7} decay={1.6} color={WARM} />
       {/* chargers + cars */}
       {xs.map((x, i) => (
         <Pedestal key={x} tier={tier} x={x + 1.95} z={1.5} scale={0.5} charge={i === 1 ? charge : i === 0 ? busy : full} glow={i === 1 ? glow : gIdle} />
@@ -550,9 +546,6 @@ function Flagship({ tier }) {
       <Prop get={get} name="potted_plant_01" position={[X + 15.2, 0, -8]} />
       <Prop get={get} name="potted_plant_01" position={[X - 15.2, 0, -8]} />
       <Prop get={get} name="potted_plant_02" position={[X + 14.8, 0, -16.2]} />
-      <pointLight position={[X - 7, 3.2, -11.5]} intensity={26} distance={11} decay={1.6} color={WARM} />
-      <pointLight position={[X + 9, 3, -12.5]} intensity={22} distance={9} decay={1.6} color={WARM} />
-      <pointLight position={[X, 3, -5]} intensity={14} distance={10} decay={1.6} color="#ffd59c" />
       {/* chargers + cars */}
       {xs.map((x, i) => (
         <Pedestal key={x} tier={tier} x={x + 1.95} z={1.5} scale={0.6} charge={i === 3 ? charge : i % 2 ? busy : full} glow={i === 3 ? glow : gIdle} />

@@ -83,9 +83,15 @@ export function isShown(o) {
 export function Gate({ from, to, children }) {
   const g = useRef();
   useFrame(() => {
-    if (g.current) g.current.visible = SS.p >= from && SS.p <= to;
+    // SS.warm: briefly show every set while the scene loads so all materials
+    // and textures are prepared up front (no hitch when a set first appears)
+    if (g.current) g.current.visible = SS.warm || (SS.p >= from && SS.p <= to);
   });
-  return <group ref={g}>{children}</group>;
+  return (
+    <group ref={g} userData={{ gate: true }}>
+      {children}
+    </group>
+  );
 }
 
 // A seated / standing guest playing one idle clip (ping-pong so trimmed loops never pop).
@@ -529,12 +535,7 @@ function Building() {
           <meshStandardMaterial color={['#e9e4dc', '#2b3647', '#b8865a'][i % 3]} roughness={0.4} />
         </mesh>
       ))}
-      {/* lights: warm inside, cool canopy */}
-      <pointLight position={[X - 3, 2.7, -9.8]} intensity={26} distance={9} decay={1.6} color="#ffc27a" />
-      <pointLight position={[X + 2.2, 2.5, -7.0]} intensity={22} distance={7} decay={1.6} color="#ffcf8f" />
-      <pointLight position={[X + 4.8, 2.5, -10.6]} intensity={16} distance={7} decay={1.6} color="#ffc27a" />
-      <pointLight position={[X - 1.0, 2.4, -8.6]} intensity={12} distance={6} decay={1.6} color="#ffd59c" />
-      <pointLight position={[X, 3.6, 0.8]} intensity={24} distance={14} color="#e9fbff" />
+      {/* lights: provided by the shared LightPool (see lights.js) */}
     </group>
   );
 }
