@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { gsap, ScrollTrigger } from '../lib/scroll';
 import { useGsap } from '../lib/useGsap';
-import { prefersReducedMotion, detectTier } from '../lib/device';
-import ServicesFilm from '../services/ServicesFilm';
+import { prefersReducedMotion } from '../lib/device';
+import FormatsVisual from '../sections/FormatsVisual';
 import { services, waLink, solutionsIntro } from '../content';
 import PageShell from '../components/PageShell';
 import PageHero from '../components/PageHero';
@@ -95,7 +95,7 @@ export default function ServicesPage() {
         variant="bars"
         index="02"
       />
-      <ServicesFilm tier={detectTier()} />
+      <FormatsVisual />
       <ServiceDetail />
       <DcDesign />
       <ProcessGraphic note />

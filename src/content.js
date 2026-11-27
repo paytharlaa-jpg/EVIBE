@@ -26,6 +26,7 @@ export const pages = [
   { path: '/services', label: 'Solutions', title: 'EV Charging Solutions | Communities, Hotels, Commercial, Highway, Fleet | EVIBE', desc: 'Charging solutions designed around your location: gated communities, hotels, commercial premises, highway hubs, fleet & logistics and EVIBE experience destinations.' },
   { path: '/franchise', label: 'Franchise', title: 'EVIBE Franchise Opportunities | Starter, Signature, Flagship', desc: 'Choose your EVIBE. Three franchise formats configured around investment capacity, land availability and local market requirements.' },
   { path: '/iq', label: 'EVIBE IQ', title: 'EVIBE IQ | Find the Right Location for EV Charging', desc: 'EVIBE IQ helps identify and assess promising locations for EV charging infrastructure, so better site decisions start with better location insights.' },
+  { path: '/pay-and-charge', label: 'Pay & Charge', title: 'Charge on WhatsApp · Payment Process | EVIBE Digital Charging', desc: 'No app. No hassle. Just charge. Scan, pay and charge through WhatsApp in seven simple steps, with any unused balance refunded to your original payment account.' },
   { path: '/partner', label: 'Partner With Us', title: 'Partner With EVIBE | Landowners & Business Partnerships', desc: 'Have a location with potential? Partner with EVIBE to explore EV charging solutions and EVIBE experience destinations on your property.' },
   { path: '/gallery', label: 'Gallery', title: 'Gallery | EVIBE EV Charging', desc: 'Charging solutions, hubs and electric experiences by EVIBE.' },
   { path: '/faq', label: 'FAQ', title: 'FAQ | EVIBE EV Charging Ecosystem', desc: 'Answers about EVIBE charging solutions, deployment, technology, franchise formats and landowner partnerships.' },
@@ -252,6 +253,36 @@ export const dc = {
     body: 'We aim to avoid unnecessary upfront capacity while preserving a practical path to expansion as local demand grows.',
   },
   note: 'These are capacity categories, not a recommendation for any particular site. Actual charger output may be limited by vehicle acceptance, connector ratings, battery state, temperature, charger design and dynamic power sharing. A 240 kW unit does not guarantee every connected vehicle receives 240 kW simultaneously. Final configuration requires site-specific demand analysis, charger technical review, utility confirmation and electrical engineering approval. Forecasts are estimates, not guarantees of utilization or returns.',
+};
+
+// ── Payment process · EVIBE Digital Charging (WhatsApp) ──────
+export const payment = {
+  kicker: 'EVIBE Digital Charging',
+  eyebrow: 'The EVIBE digital experience',
+  title: ['No app. No hassle.', 'Just charge.'],
+  body: 'Scan. Pay. Charge. All through WhatsApp. A simple, guided charging journey, with unused balance refunded to your original payment account.',
+  perks: ['Quick & Easy', 'Secure Payments', 'Real-Time Updates', 'Unused Balance Refund'],
+  flow: {
+    title: 'Your charging journey, step by step.',
+    body: 'Seven connected steps, shown as a visual workflow: from scanning the charger QR code to completing your session and receiving any unused balance back.',
+    note: 'Illustrative workflow visual. Payment options, live controls and charger details depend on the services enabled at each EVIBE location.',
+  },
+  steps: [
+    { id: 'scan', title: 'Scan the QR code', body: 'Scan the QR displayed on the EVIBE charger to begin.' },
+    { id: 'details', title: 'Get charger details', body: 'View the station, charger, connector and available charging information in WhatsApp.' },
+    { id: 'amount', title: 'Choose your amount', body: 'Select a preset amount or enter your preferred amount or energy, where enabled.' },
+    { id: 'pay', title: 'Make secure payment', body: 'Complete payment using the digital payment options available at checkout.' },
+    { id: 'start', title: 'Start charging', body: 'Receive confirmation when the charging session starts.' },
+    { id: 'track', title: 'Track and control', body: 'Follow live charging progress and use top-up or stop controls where supported.' },
+    { id: 'done', title: 'Complete and get refunded', body: 'Receive your session summary and digital receipt. Any unused balance is refunded to the original payment account.' },
+  ],
+  explain: { title: 'Every step, clearly explained.', body: 'A simple experience for first-time and returning EV drivers.' },
+  refund: {
+    title: 'Pay for what you use. Get the unused amount back.',
+    body: 'Any unused balance from the charging session is refunded to the customer’s original payment account after session completion, rather than being left as a balance for the next visit.',
+  },
+  difference: ['No separate app download required', 'Pay only for what you use', 'Unused balance automatically refunded to your account'],
+  tagline: 'Charge · Relax · Connect',
 };
 
 // ── Solutions (services) ──────────────────────────────────────

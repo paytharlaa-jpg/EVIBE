@@ -17,10 +17,8 @@ export function startSmoothScroll() {
   // fast-forward the intro animations to their end.
   gsap.ticker.lagSmoothing(500, 50);
   if (isTouch()) {
-    // iOS/Android: scrolling runs on its own thread, so the WebGL films and
-    // their text drew a frame behind the page ("shake"). normalizeScroll keeps
-    // scroll and rendering in sync and stops the address bar from jumping.
-    norm = ScrollTrigger.normalizeScroll({ allowNestedScroll: true, lockAxis: false, momentum: (self) => Math.min(3, self.velocityY / 1000), type: 'touch,wheel' });
+    // Phones/tablets keep the browser's own (compositor-thread) scrolling:
+    // JS-driven scrolling lags as soon as the 3D keeps the main thread busy.
     return null;
   }
   // Butter: a low lerp glides every wheel step; wheel distance slightly reduced so

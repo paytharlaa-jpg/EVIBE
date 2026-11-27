@@ -213,7 +213,7 @@
 /* ───────── The film ───────── */
 .story {
   position: relative;
-  height: 1300vh;
+  height: 820vh;
 }
 .story.is-static {
   height: auto;
@@ -634,7 +634,7 @@
 }
 @media (max-width: 767px) {
   .story {
-    height: 1150vh;
+    height: 700vh;
   }
   .sc,
   .sc-low,

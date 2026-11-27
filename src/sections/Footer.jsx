@@ -55,7 +55,7 @@ export default function Footer() {
             </TLink>
             <h3 className="ft-sub">Technology</h3>
             {['EVIBE CSMS', 'EVIBE IQ', 'EVIBE Miles', 'Digital Charging'].map((t) => (
-              <TLink key={t} to={t === 'EVIBE IQ' ? '/iq' : '/about#technology'} className="u-link">
+              <TLink key={t} to={t === 'EVIBE IQ' ? '/iq' : t === 'Digital Charging' ? '/pay-and-charge' : '/about#technology'} className="u-link">
                 {t}
               </TLink>
             ))}

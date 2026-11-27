@@ -5,7 +5,7 @@ import fs from 'node:fs';
 const [mode = 'desktop', out] = process.argv.slice(2); fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const ctx = await browser.newContext(mode === 'mobile' ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } : { viewport: { width: 1440, height: 900 } });
-for (const path of ['/', '/about', '/services', '/franchise', '/iq', '/partner', '/gallery', '/faq', '/contact']) {
+for (const path of ['/', '/about', '/services', '/franchise', '/iq', '/pay-and-charge', '/partner', '/gallery', '/faq', '/contact']) {
   const page = await ctx.newPage();
   const log = [];
   page.on('pageerror', (e) => log.push('PAGEERROR ' + String(e).slice(0, 200)));

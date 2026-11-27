@@ -17,6 +17,7 @@ import { GalleryPage, FAQPage, ContactPage } from './pages/Simple';
 import FranchisePage from './pages/Franchise';
 import PartnerPage from './pages/Partner';
 import IQPage from './pages/IQ';
+import PayChargePage from './pages/PayCharge';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/franchise" element={<FranchisePage />} />
           <Route path="/iq" element={<IQPage />} />
+          <Route path="/pay-and-charge" element={<PayChargePage />} />
           <Route path="/partner" element={<PartnerPage />} />
           <Route path="/testimonials" element={<Navigate to="/partner" replace />} />
           <Route path="/faq" element={<FAQPage />} />

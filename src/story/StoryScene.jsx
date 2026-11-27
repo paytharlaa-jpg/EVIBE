@@ -22,7 +22,7 @@ function Director() {
   useFrame((state, dt) => {
     // ease towards the scroll position; catch up faster (never jump) after a big flick
     const gap = Math.abs(S.target - S.p);
-    S.p = first.v ? S.target : damp(S.p, S.target, 2.5 + Math.max(0, gap - 0.06) * 30, Math.min(dt, 0.1));
+    S.p = first.v ? S.target : damp(S.p, S.target, 3.4 + Math.max(0, gap - 0.06) * 30, Math.min(dt, 0.1));
     const car = carPose(S.p);
     const { pos, look: l } = cameraAt(S.p, car, S.mobile);
     // a little handheld drift while cruising, stillness while charging
@@ -120,17 +120,20 @@ function MovingStrips() {
 }
 
 function Lights({ tier }) {
+  // Live (every-frame) reflections only on desktop: on phones re-rendering the
+  // environment cube 6× per frame was the biggest cause of scroll lag.
+  const live = tier >= 2 && !isTouch();
   return (
     <>
       <hemisphereLight args={['#2a4f8f', '#02060f', 0.55]} />
       <directionalLight position={[-30, 40, 20]} intensity={0.6} color="#9ec5ff" />
-      <Environment resolution={tier >= 3 ? 256 : 128} frames={tier >= 2 ? Infinity : 1}>
+      <Environment resolution={tier >= 3 ? 256 : 128} frames={live ? Infinity : 1}>
         <color attach="background" args={['#02060f']} />
         <Lightformer form="rect" intensity={1.2} position={[0, 10, 0]} rotation-x={Math.PI / 2} scale={[30, 30, 1]} color="#1b2f55" />
         <Lightformer form="rect" intensity={1.6} color="#12DDC6" position={[-12, 1.5, 0]} rotation-y={Math.PI / 2} scale={[40, 1.2, 1]} />
         <Lightformer form="rect" intensity={1.4} color="#0A82FF" position={[12, 2, 0]} rotation-y={-Math.PI / 2} scale={[40, 2, 1]} />
         <Lightformer form="ring" intensity={2} color="#ffd9a8" position={[0, 3, -30]} scale={6} />
-        {tier >= 2 && <MovingStrips />}
+        {live && <MovingStrips />}
       </Environment>
     </>
   );
@@ -165,7 +168,7 @@ export default function StoryScene({ tier, active, onReady }) {
   const maxDpr = tier === 3 ? 1.6 : tier === 2 ? 1.35 : 1;
   // Fixed pixel ratio: changing it mid-scroll resizes the canvas and flashes a frame.
   // Phones: sharper (1.5×) with hardware anti-aliasing, because thin lines shimmer badly without it.
-  const [dpr] = useState(() => (isTouch() ? Math.min(1.5, window.devicePixelRatio || 1) : Math.min(maxDpr, window.devicePixelRatio || 1)));
+  const [dpr] = useState(() => (isTouch() ? Math.min(1.25, window.devicePixelRatio || 1) : Math.min(maxDpr, window.devicePixelRatio || 1)));
   const [post] = useState(() => tier >= 2 && !isTouch());
   return (
     <Canvas
